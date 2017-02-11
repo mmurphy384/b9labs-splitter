@@ -1,12 +1,31 @@
 var accounts;
 var account;
 
+function getBasicInfo(prefix) {
+
+  console.log('------------------------------')
+  console.log(prefix + ': web3.eth.accounts = ' + web3.eth.accounts);
+  console.log(prefix + ': web3.eth.mining = ' + web3.eth.mining);
+  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]));
+  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]));
+  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]));
+  console.log('------------------------------')
+
+}
+
+ 
 function split() {
   
   split = Splitter.deployed(accounts[1],accounts[2]);
-
-  console.log("Calling Splitter");
-  split.split(1000000);
+  console.log('splitting: split.address = ' + split.address);
+  console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
+  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") });')
+  console.log(web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") }));
+  console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
+  console.log('splitting: split.bob.call() = ' + split.bob.call());
+  console.log('splitting: split.bob.call() = ' + split.carol.call());
+  console.log("Calling split");
+  split.split(500000000);
   console.log("Everything is split");
 
 }
@@ -29,14 +48,13 @@ window.onload = function() {
       alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
     }
-
+    
     accounts = accs;
     account = accounts[0];
 
-    refreshBalances('pre-split');
+    getBasicInfo('pre-split');
     split();
-    refreshBalances('post-split');
+    getBasicInfo('post-split');
 
   });
 }
-

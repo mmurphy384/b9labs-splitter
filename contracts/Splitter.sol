@@ -5,10 +5,10 @@ contract Splitter {
     address public bob;
     address public carol;
 
-    function Splitter() payable {
-        owner = msg.sender;
-        bob = 0xb61a1675eebb38a1fe16c2d724c0a0ac47529cf9;
-        carol = 0xf532f8124d43e986955dc93b4ef979da535b98ed;        
+    function Splitter() {
+        owner = 0x05c07dc6f56edd1a4416bafa1dd0828f44d17b6b;
+        bob = 0xaa838939b36918cd8def05f1e5d9dcc54e67f983;
+        carol = 0xc48368f9b45be3ca50bf54258780c85763033792;   
     }
 
     function split(uint sendAmount) returns (bool) {
