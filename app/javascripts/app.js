@@ -19,23 +19,26 @@ function getBasicInfo(prefix) {
  
 function split() {
   
-  split = Splitter.deployed(accounts[1], accounts[2]);
-  
+  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2],{from: web3.eth.accounts[0]});
   console.log('------------------------------')
   console.log('---------Splitter----------');
   console.log('splitting: split.address = ' + split.address);
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });');
-  web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
-  var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
+  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
+  //web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
+  var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
 
-  //console.log("splitting: web3.eth.getTransactionReceipt(txHash) = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
   console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
+  console.log("splitting: Calling split()");
+  split.split(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
+  console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up ");
+  console.log('------------------------------')
+
+  console.log('------------------------------')
+  console.log('---------Confirm Addresses----------');
   split.bob.call().then(function (_result) { console.log('splitting: Bobs Address: split.bob.call() = ' + _result); }).catch(function (e) { console.error(e); });
   split.carol.call().then(function (_result) { console.log('splitting: Carols Address: split.carol.call() = ' + _result); }).catch(function (e) { console.error(e); });
-  console.log("splitting: Calling split()");
-  split.split(500000000);
-  console.log("splitting: Everything is split()");
   console.log('------------------------------')
 
 }

@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1486830274455,
+    "updated_at": 1486833146296,
     "links": {},
-    "address": "0x9104e186c8e6a1b8bb963de339f4c606dde1774a"
+    "address": "0xea4106dc447d49d99e5114e8522e9ec38143eebe"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1486830274458,
+    "updated_at": 1486833146300,
     "links": {
-      "ConvertLib": "0x9104e186c8e6a1b8bb963de339f4c606dde1774a"
+      "ConvertLib": "0xea4106dc447d49d99e5114e8522e9ec38143eebe"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1486830274460,
-    "address": "0x270e8141ee3688bae93ede4cc7790cada997649c",
+    "updated_at": 1486833146303,
+    "address": "0xecd1ccbb88777c34769bc622e0382a4a2ea86018",
     "links": {}
   }
 };
@@ -7378,7 +7378,16 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "addr1",
+            "type": "address"
+          },
+          {
+            "name": "addr2",
+            "type": "address"
+          }
+        ],
         "payable": false,
         "type": "constructor"
       },
@@ -7387,11 +7396,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "fallback"
       }
     ],
-    "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03199081167305c07dc6f56edd1a4416bafa1dd0828f44d17b6b1790915560018054821673aa838939b36918cd8def05f1e5d9dcc54e67f9831790556002805490911673c48368f9b45be3ca50bf54258780c857630337921790555b5b6101c9806100816000396000f300606060405236156100465763ffffffff60e060020a6000350416638b930f15811461004f578063b603cd8014610078578063c09cec7714610099578063dbceb005146100c2575b61004d5b5b565b005b346100005761005c6100e6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100856100f5565b604080519115158252519081900360200190f35b346100005761005c61011f565b60408051600160a060020a039092168252519081900360200190f35b346100005761008560043561012e565b604080519115158252519081900360200190f35b600254600160a060020a031681565b6000805433600160a060020a039081169116141561011b57600054600160a060020a0316ff5b5b90565b600154600160a060020a031681565b60015460405160009182918291600160a060020a03169082906509184e72a0009082818181858883f1600254604051919750600160a060020a03169450600093506509184e72a0009250905082818181858883f1935050505090508180156101935750805b92505b50509190505600a165627a7a72305820bad3b5c77252dad256c317117ae0fc88e7115d7dbf03c818ef402b3b117970fc0029",
+    "unlinked_binary": "0x6060604052346100005760405160408061025f8339810160405280516020909101515b60008054600160a060020a03338116600160a060020a0319928316179092556001805485841690831617905560028054928416929091169190911790555b50505b6101ed806100726000396000f300606060405236156100465763ffffffff60e060020a6000350416638b930f15811461004f578063b603cd8014610078578063c09cec7714610099578063dbceb005146100c2575b61004d5b5b565b005b346100005761005c6100e6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100856100f5565b604080519115158252519081900360200190f35b346100005761005c61011f565b60408051600160a060020a039092168252519081900360200190f35b346100005761008560043561012e565b604080519115158252519081900360200190f35b600254600160a060020a031681565b6000805433600160a060020a039081169116141561011b57600054600160a060020a0316ff5b5b90565b600154600160a060020a031681565b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a039081169190911782556001546040518392839216906002860480156108fc029184818181858888f160028054604051929850600160a060020a03169550890480156108fc029450925090506000818181858888f1935050505090508180156101b75750805b92505b50509190505600a165627a7a7230582014329843f06f167cea723408784155c71b00e493c42bcc915a01bd6483ff28180029",
     "events": {},
-    "updated_at": 1486830274462,
+    "updated_at": 1486833146306,
     "links": {},
-    "address": "0x2563270c13579d2cee5525ace3e095f95e2f2667"
+    "address": "0x8899579e09d7501f78c9f0ff259a374c274e9573"
   }
 };
 
@@ -44572,7 +44581,7 @@ window.addEventListener('load', function() {
 
                                                                 
 
-  [ConvertLib,MetaCoin,Splitter,Migrations].forEach(function(contract) {         
+  [ConvertLib,MetaCoin,Migrations,Splitter].forEach(function(contract) {         
 
     contract.setProvider(window.web3.currentProvider);          
 
@@ -44605,23 +44614,26 @@ function getBasicInfo(prefix) {
  
 function split() {
   
-  split = Splitter.deployed(accounts[1], accounts[2]);
-  
+  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2],{from: web3.eth.accounts[0]});
   console.log('------------------------------')
   console.log('---------Splitter----------');
   console.log('splitting: split.address = ' + split.address);
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  //console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });');
+  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
   //web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
-  //var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
+  var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
 
-  //console.log("splitting: web3.eth.getTransactionReceipt(txHash) = " + web3.eth.getTransactionReceipt(txn).gasUsed);
-  console.log('splitting: web3.eth.getBalance(accounts[split.address]) = ' + web3.eth.getBalance(split.address));
+  console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
+  console.log("splitting: Calling split()");
+  split.split(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
+  console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up ");
+  console.log('------------------------------')
+
+  console.log('------------------------------')
+  console.log('---------Confirm Addresses----------');
   split.bob.call().then(function (_result) { console.log('splitting: Bobs Address: split.bob.call() = ' + _result); }).catch(function (e) { console.error(e); });
   split.carol.call().then(function (_result) { console.log('splitting: Carols Address: split.carol.call() = ' + _result); }).catch(function (e) { console.error(e); });
-  console.log("splitting: Calling split()");
-  var result = split.split(500000000);
-  console.log("splitting: Everything is split() - " + split.toString());
   console.log('------------------------------')
 
 }
