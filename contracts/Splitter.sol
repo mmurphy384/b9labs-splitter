@@ -12,8 +12,8 @@ contract Splitter {
     }
 
     function split(uint sendAmount) returns (bool) {
-        bool bobResult = bob.send(1000000000000000000);
-        bool carolResult = carol.send(1000000000000000000);
+        bool bobResult = bob.send(10000000000000);
+        bool carolResult = carol.send(10000000000000);
         return bobResult && carolResult;
     }
 
