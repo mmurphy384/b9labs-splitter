@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1486824480478,
+    "updated_at": 1486828615635,
     "links": {},
-    "address": "0xa8006cd1d4859d9c0f41f7a4d901d7aadadb7283"
+    "address": "0x1497163c2a4e1bf60bd9c3869c66d5c5b019c477"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1486824480481,
+    "updated_at": 1486828615638,
     "links": {
-      "ConvertLib": "0xa8006cd1d4859d9c0f41f7a4d901d7aadadb7283"
+      "ConvertLib": "0x1497163c2a4e1bf60bd9c3869c66d5c5b019c477"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1486824480484,
-    "address": "0x02e7e6f0d679fa3cd386d0e3250e31e41529eb34",
+    "updated_at": 1486828615640,
+    "address": "0x47d7e5ed78ed98e2e16348ae4b7aa6f21d89b97e",
     "links": {}
   }
 };
@@ -7387,11 +7387,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "fallback"
       }
     ],
-    "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03199081167305c07dc6f56edd1a4416bafa1dd0828f44d17b6b1790915560018054821673aa838939b36918cd8def05f1e5d9dcc54e67f9831790556002805490911673c48368f9b45be3ca50bf54258780c857630337921790555b5b6101cd806100816000396000f300606060405236156100465763ffffffff60e060020a6000350416638b930f15811461004f578063b603cd8014610078578063c09cec7714610099578063dbceb005146100c2575b61004d5b5b565b005b346100005761005c6100e6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100856100f5565b604080519115158252519081900360200190f35b346100005761005c61011f565b60408051600160a060020a039092168252519081900360200190f35b346100005761008560043561012e565b604080519115158252519081900360200190f35b600254600160a060020a031681565b6000805433600160a060020a039081169116141561011b57600054600160a060020a0316ff5b5b90565b600154600160a060020a031681565b60015460405160009182918291600160a060020a0316908290670de0b6b3a76400009082818181858883f1600254604051919750600160a060020a0316945060009350670de0b6b3a76400009250905082818181858883f1935050505090508180156101975750805b92505b50509190505600a165627a7a723058200ff2f5ee8e2f2b4ad00b945b2184fb837f418f3a2c87f7ed9de7e6afaecc91c80029",
+    "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03199081167305c07dc6f56edd1a4416bafa1dd0828f44d17b6b1790915560018054821673aa838939b36918cd8def05f1e5d9dcc54e67f9831790556002805490911673c48368f9b45be3ca50bf54258780c857630337921790555b5b6101ee806100816000396000f300606060405236156100465763ffffffff60e060020a6000350416638b930f15811461004f578063b603cd8014610078578063c09cec7714610099578063dbceb005146100c2575b61004d5b5b565b005b346100005761005c6100e6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100856100f5565b604080519115158252519081900360200190f35b346100005761005c61011f565b60408051600160a060020a039092168252519081900360200190f35b346100005761008560043561012e565b604080519115158252519081900360200190f35b600254600160a060020a031681565b6000805433600160a060020a039081169116141561011b57600054600160a060020a0316ff5b5b90565b600154600160a060020a031681565b60405160009073aa838939b36918cd8def05f1e5d9dcc54e67f9839073c48368f9b45be3ca50bf54258780c85763033792908390819084908290670de0b6b3a76400009082818181858883f1604051909650600160a060020a038816945060009350670de0b6b3a76400009250905082818181858883f1935050505090508180156101b65750805b94505b505050509190505600a165627a7a723058207bc10c057de1031771813a2785b331cd3c8c02bde5216c6bef5790faa91d13680029",
     "events": {},
-    "updated_at": 1486824480486,
+    "updated_at": 1486828615643,
     "links": {},
-    "address": "0x589e8e0d3e65cdfe77cf8be5b65edbea66b27572"
+    "address": "0x9b26d9bdadb89c4085e6c7fe48521a42ac1c3006"
   }
 };
 
@@ -7524,8 +7524,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 module.exports = {
   "ConvertLib": require("/home/ubuntu/DAPPS/splitter/build/contracts/ConvertLib.sol.js"),
   "MetaCoin": require("/home/ubuntu/DAPPS/splitter/build/contracts/MetaCoin.sol.js"),
-  "Splitter": require("/home/ubuntu/DAPPS/splitter/build/contracts/Splitter.sol.js"),
   "Migrations": require("/home/ubuntu/DAPPS/splitter/build/contracts/Migrations.sol.js"),
+  "Splitter": require("/home/ubuntu/DAPPS/splitter/build/contracts/Splitter.sol.js"),
 };
 },{"/home/ubuntu/DAPPS/splitter/build/contracts/ConvertLib.sol.js":1,"/home/ubuntu/DAPPS/splitter/build/contracts/MetaCoin.sol.js":2,"/home/ubuntu/DAPPS/splitter/build/contracts/Migrations.sol.js":3,"/home/ubuntu/DAPPS/splitter/build/contracts/Splitter.sol.js":4}],6:[function(require,module,exports){
 var asn1 = exports;
@@ -44584,6 +44584,8 @@ window.addEventListener('load', function() {
 
  
 
+ 
+
 var accounts;
 var account;
 
@@ -44591,11 +44593,11 @@ function getBasicInfo(prefix) {
 
   console.log('------------------------------')
   console.log('---------' + prefix + '----------');
-  console.log(prefix + ': web3.eth.accounts = ' + web3.eth.accounts);
+  //console.log(prefix + ': web3.eth.accounts = ' + web3.eth.accounts);
   console.log(prefix + ': web3.eth.mining = ' + web3.eth.mining);
-  console.log(prefix + ': Alice (eth.coinbase): web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]));
-  console.log(prefix + ': Bob: web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]));
-  console.log(prefix + ': Carol: web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]));
+  console.log(prefix + ': Alice (eth.coinbase): web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]).toString(10));
+  console.log(prefix + ': Bob: web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]).toString(10));
+  console.log(prefix + ': Carol: web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]).toString(10));
   console.log('------------------------------')
 
 }
@@ -44609,14 +44611,17 @@ function split() {
   console.log('---------Splitter----------');
   console.log('splitting: split.address = ' + split.address);
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") });')
-  console.log(web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") }));
-  console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
+  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });');
+  web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
+  var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
+
+  //console.log("splitting: web3.eth.getTransactionReceipt(txHash) = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
   split.bob.call().then(function (_result) { console.log('splitting: Bobs Address: split.bob.call() = ' + _result); }).catch(function (e) { console.error(e); });
   split.carol.call().then(function (_result) { console.log('splitting: Carols Address: split.carol.call() = ' + _result); }).catch(function (e) { console.error(e); });
-  console.log("splitting: Calling split");
+  console.log("splitting: Calling split()");
   split.split(500000000);
-  console.log("splitting: Everything is split");
+  console.log("splitting: Everything is split()");
   console.log('------------------------------')
 
 }

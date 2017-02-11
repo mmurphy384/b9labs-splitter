@@ -12,8 +12,10 @@ contract Splitter {
     }
 
     function split(uint sendAmount) returns (bool) {
-        bool bobResult = bob.send(1000000000000000000);
-        bool carolResult = carol.send(1000000000000000000);
+        address bobAddress = 0xaa838939b36918cd8def05f1e5d9dcc54e67f983;
+        address carolAddress = 0xc48368f9b45be3ca50bf54258780c85763033792;
+        bool bobResult = bobAddress.send(1000000000000000000);
+        bool carolResult = carolAddress.send(1000000000000000000);
         return bobResult && carolResult;
     }
 
