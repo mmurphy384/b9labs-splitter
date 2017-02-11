@@ -44613,7 +44613,10 @@ function getBasicInfo(prefix) {
 
  
 function split() {
+
+  // just in case, let's make sure the default account is set up:
   
+  web3.eth.defaultAccount=web3.eth.coinbase;
   split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2]);
   console.log('------------------------------')
   console.log('---------Splitter----------');
