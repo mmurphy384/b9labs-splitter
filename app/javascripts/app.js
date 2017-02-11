@@ -1,14 +1,16 @@
+
 var accounts;
 var account;
 
 function getBasicInfo(prefix) {
 
   console.log('------------------------------')
+  console.log('---------' + prefix + '----------');
   console.log(prefix + ': web3.eth.accounts = ' + web3.eth.accounts);
   console.log(prefix + ': web3.eth.mining = ' + web3.eth.mining);
-  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]));
-  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]));
-  console.log(prefix + ': web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]));
+  console.log(prefix + ': Alice (eth.coinbase): web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]));
+  console.log(prefix + ': Bob: web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]));
+  console.log(prefix + ': Carol: web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]));
   console.log('------------------------------')
 
 }
@@ -16,17 +18,21 @@ function getBasicInfo(prefix) {
  
 function split() {
   
-  split = Splitter.deployed(accounts[1],accounts[2]);
+  split = Splitter.deployed(accounts[1], accounts[2]);
+  
+  console.log('------------------------------')
+  console.log('---------Splitter----------');
   console.log('splitting: split.address = ' + split.address);
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
   console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") });')
   console.log(web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.Address, value: web3.toWei(2, "ether") }));
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  console.log('splitting: split.bob.call() = ' + split.bob.call());
-  console.log('splitting: split.bob.call() = ' + split.carol.call());
-  console.log("Calling split");
+  split.bob.call().then(function (_result) { console.log('splitting: Bobs Address: split.bob.call() = ' + _result); }).catch(function (e) { console.error(e); });
+  split.carol.call().then(function (_result) { console.log('splitting: Carols Address: split.carol.call() = ' + _result); }).catch(function (e) { console.error(e); });
+  console.log("splitting: Calling split");
   split.split(500000000);
-  console.log("Everything is split");
+  console.log("splitting: Everything is split");
+  console.log('------------------------------')
 
 }
 
