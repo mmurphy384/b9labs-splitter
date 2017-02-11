@@ -26,7 +26,7 @@ function split() {
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
   //console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
   //var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
-  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gasUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
   //console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
   console.log("splitting: Calling split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]})");
   split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});

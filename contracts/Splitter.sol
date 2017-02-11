@@ -20,6 +20,10 @@ contract Splitter {
         return bobResult && carolResult;
     }
 
+    function simpleSend(address addr1, uint sendAmount) returns (bool) {
+        return addr1.send(sendAmount);
+    }
+
     function killMe() returns (bool) {
         if (msg.sender == owner) {
             suicide(owner);

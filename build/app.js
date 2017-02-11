@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1486833146296,
+    "updated_at": 1486836969690,
     "links": {},
-    "address": "0xea4106dc447d49d99e5114e8522e9ec38143eebe"
+    "address": "0x3d961c20708697485c444941f33d657f2414743a"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1486833146300,
+    "updated_at": 1486836969698,
     "links": {
-      "ConvertLib": "0xea4106dc447d49d99e5114e8522e9ec38143eebe"
+      "ConvertLib": "0x3d961c20708697485c444941f33d657f2414743a"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1486833146303,
-    "address": "0xecd1ccbb88777c34769bc622e0382a4a2ea86018",
+    "updated_at": 1486836969696,
+    "address": "0xdac4fdc8a6117f60c54b06af58c84e69229ee63d",
     "links": {}
   }
 };
@@ -7321,6 +7321,54 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "addr1",
+            "type": "address"
+          },
+          {
+            "name": "sendAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "simpleSend",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "addr1",
+            "type": "address"
+          },
+          {
+            "name": "addr2",
+            "type": "address"
+          },
+          {
+            "name": "sendAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "split",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
         "constant": true,
         "inputs": [],
         "name": "carol",
@@ -7360,24 +7408,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "sendAmount",
-            "type": "uint256"
-          }
-        ],
-        "name": "split",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
         "inputs": [
           {
             "name": "addr1",
@@ -7396,11 +7426,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "fallback"
       }
     ],
-    "unlinked_binary": "0x6060604052346100005760405160408061025f8339810160405280516020909101515b60008054600160a060020a03338116600160a060020a0319928316179092556001805485841690831617905560028054928416929091169190911790555b50505b6101ed806100726000396000f300606060405236156100465763ffffffff60e060020a6000350416638b930f15811461004f578063b603cd8014610078578063c09cec7714610099578063dbceb005146100c2575b61004d5b5b565b005b346100005761005c6100e6565b60408051600160a060020a039092168252519081900360200190f35b34610000576100856100f5565b604080519115158252519081900360200190f35b346100005761005c61011f565b60408051600160a060020a039092168252519081900360200190f35b346100005761008560043561012e565b604080519115158252519081900360200190f35b600254600160a060020a031681565b6000805433600160a060020a039081169116141561011b57600054600160a060020a0316ff5b5b90565b600154600160a060020a031681565b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a039081169190911782556001546040518392839216906002860480156108fc029184818181858888f160028054604051929850600160a060020a03169550890480156108fc029450925090506000818181858888f1935050505090508180156101b75750805b92505b50509190505600a165627a7a7230582014329843f06f167cea723408784155c71b00e493c42bcc915a01bd6483ff28180029",
+    "unlinked_binary": "0x606060405234610000576040516040806102f88339810160405280516020909101515b60008054600160a060020a03338116600160a060020a0319928316179092556001805485841690831617905560028054928416929091169190911790555b50505b610286806100726000396000f300606060405236156100515763ffffffff60e060020a6000350416632a52e177811461005a5780633313be4e1461008a5780638b930f15146100c0578063b603cd80146100e9578063c09cec771461010a575b6100585b5b565b005b3461000057610076600160a060020a0360043516602435610133565b604080519115158252519081900360200190f35b3461000057610076600160a060020a0360043581169060243516604435610162565b604080519115158252519081900360200190f35b34610000576100cd610212565b60408051600160a060020a039092168252519081900360200190f35b3461000057610076610221565b604080519115158252519081900360200190f35b34610000576100cd61024b565b60408051600160a060020a039092168252519081900360200190f35b604051600090600160a060020a0384169083156108fc0290849084818181858888f19450505050505b92915050565b6000805473ffffffffffffffffffffffffffffffffffffffff1990811633600160a060020a0390811691909117835560018054831687831690811790915560028054909316918616919091178255604051839283929190860480156108fc029184818181858888f1604051909650600160a060020a038a1694506002890480156108fc029450925090506000818181858888f1935050505090508180156102065750805b92505b50509392505050565b600254600160a060020a031681565b6000805433600160a060020a039081169116141561024757600054600160a060020a0316ff5b5b90565b600154600160a060020a0316815600a165627a7a7230582073c30e24aa7fae5b6e8e47ede16be5d206c252bb01ff943638298a7e19d538b60029",
     "events": {},
-    "updated_at": 1486833146306,
+    "updated_at": 1486836969693,
     "links": {},
-    "address": "0x8899579e09d7501f78c9f0ff259a374c274e9573"
+    "address": "0xa2e9836b4a8293ec81b65984429dc635ad39dad0"
   }
 };
 
@@ -44593,8 +44623,6 @@ window.addEventListener('load', function() {
 
  
 
- 
-
 var accounts;
 var account;
 
@@ -44613,7 +44641,6 @@ function getBasicInfo(prefix) {
 
  
 function split() {
-
   // just in case, let's make sure the default account is set up:
   
   web3.eth.defaultAccount=web3.eth.coinbase;
@@ -44624,10 +44651,12 @@ function split() {
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
   //console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
   //var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
-  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gasUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
   //console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
-  console.log("splitting: Calling split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]})");
+  //console.log("splitting: Calling split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]})");
   split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
+  //console.log("splitting:  Calling simpleSend to send ether to 1 account (for simplicity)");
+  //split.simpleSend(accounts[1], 200, { from: accounts[0] }).then(function (result) { console.log('simpleSend() =  ' + result) }).catch(function(e){console.log(error);});
   console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up (even though they are passed into split() and set there) ");
   console.log('------------------------------')
 
