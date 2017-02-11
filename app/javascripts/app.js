@@ -1,5 +1,3 @@
- 
-
 var accounts;
 var account;
 
@@ -19,20 +17,18 @@ function getBasicInfo(prefix) {
  
 function split() {
   
-  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2],{from: web3.eth.accounts[0]});
+  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2]);
   console.log('------------------------------')
   console.log('---------Splitter----------');
   console.log('splitting: split.address = ' + split.address);
   console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
-  //web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(2, "ether") });
-  var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
-
-  console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
-  console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
-  console.log("splitting: Calling split()");
-  split.split(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
-  console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up ");
+  //console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
+  //var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
+  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gatUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
+  //console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
+  console.log("splitting: Calling split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]})");
+  split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
+  console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up (even though they are passed into split() and set there) ");
   console.log('------------------------------')
 
   console.log('------------------------------')
