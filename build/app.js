@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1486836969690,
+    "updated_at": 1486943523938,
     "links": {},
-    "address": "0x3d961c20708697485c444941f33d657f2414743a"
+    "address": "0x504db4a1def34d1d93b4e31506ba2b989ba72026"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1486836969698,
+    "updated_at": 1486943523944,
     "links": {
-      "ConvertLib": "0x3d961c20708697485c444941f33d657f2414743a"
+      "ConvertLib": "0x504db4a1def34d1d93b4e31506ba2b989ba72026"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1486836969696,
-    "address": "0xdac4fdc8a6117f60c54b06af58c84e69229ee63d",
+    "updated_at": 1486943523946,
+    "address": "0xe35728890752d22353146b563e1d426fa3a2bf45",
     "links": {}
   }
 };
@@ -7324,48 +7324,17 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [
           {
-            "name": "addr1",
+            "name": "toWhom1",
             "type": "address"
           },
           {
-            "name": "sendAmount",
-            "type": "uint256"
-          }
-        ],
-        "name": "simpleSend",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "addr1",
+            "name": "toWhom2",
             "type": "address"
-          },
-          {
-            "name": "addr2",
-            "type": "address"
-          },
-          {
-            "name": "sendAmount",
-            "type": "uint256"
           }
         ],
         "name": "split",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
+        "outputs": [],
+        "payable": true,
         "type": "function"
       },
       {
@@ -7426,11 +7395,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "fallback"
       }
     ],
-    "unlinked_binary": "0x606060405234610000576040516040806102f88339810160405280516020909101515b60008054600160a060020a03338116600160a060020a0319928316179092556001805485841690831617905560028054928416929091169190911790555b50505b610286806100726000396000f300606060405236156100515763ffffffff60e060020a6000350416632a52e177811461005a5780633313be4e1461008a5780638b930f15146100c0578063b603cd80146100e9578063c09cec771461010a575b6100585b5b565b005b3461000057610076600160a060020a0360043516602435610133565b604080519115158252519081900360200190f35b3461000057610076600160a060020a0360043581169060243516604435610162565b604080519115158252519081900360200190f35b34610000576100cd610212565b60408051600160a060020a039092168252519081900360200190f35b3461000057610076610221565b604080519115158252519081900360200190f35b34610000576100cd61024b565b60408051600160a060020a039092168252519081900360200190f35b604051600090600160a060020a0384169083156108fc0290849084818181858888f19450505050505b92915050565b6000805473ffffffffffffffffffffffffffffffffffffffff1990811633600160a060020a0390811691909117835560018054831687831690811790915560028054909316918616919091178255604051839283929190860480156108fc029184818181858888f1604051909650600160a060020a038a1694506002890480156108fc029450925090506000818181858888f1935050505090508180156102065750805b92505b50509392505050565b600254600160a060020a031681565b6000805433600160a060020a039081169116141561024757600054600160a060020a0316ff5b5b90565b600154600160a060020a0316815600a165627a7a7230582073c30e24aa7fae5b6e8e47ede16be5d206c252bb01ff943638298a7e19d538b60029",
+    "unlinked_binary": "0x606060405234610000576040516040806102378339810160405280516020909101515b60008054600160a060020a03338116600160a060020a0319928316179092556001805485841690831617905560028054928416929091169190911790555b50505b6101c5806100726000396000f300606060405236156100465763ffffffff60e060020a6000350416630f2c9329811461004f5780638b930f151461006b578063b603cd8014610094578063c09cec77146100b5575b61004d5b5b565b005b61004d600160a060020a03600435811690602435166100de565b005b3461000057610078610151565b60408051600160a060020a039092168252519081900360200190f35b34610000576100a1610160565b604080519115158252519081900360200190f35b346100005761007861018a565b60408051600160a060020a039092168252519081900360200190f35b604051600234908104919082900390600160a060020a038516906108fc8415029084906000818181858888f19350505050151561011a57610000565b604051600160a060020a0384169082156108fc029083906000818181858888f19350505050151561014a57610000565b5b50505050565b600254600160a060020a031681565b6000805433600160a060020a039081169116141561018657600054600160a060020a0316ff5b5b90565b600154600160a060020a0316815600a165627a7a72305820308fdbf61e624f174c5283df1a1745904e7c45127835c646feecd3a5967875640029",
     "events": {},
-    "updated_at": 1486836969693,
+    "updated_at": 1486943523950,
     "links": {},
-    "address": "0xa2e9836b4a8293ec81b65984429dc635ad39dad0"
+    "address": "0x4ad0cb1ff3de0a7730b0fbc2d97a5f0d29c77312"
   }
 };
 
@@ -44621,58 +44590,83 @@ window.addEventListener('load', function() {
 
 //// END TRUFFLE BOOTSTRAP                                      
 
- 
+function setStatus(message) {
+  var status = document.getElementById("status");
+  status.innerText = message;
+};
 
-var accounts;
-var account;
 
-function getBasicInfo(prefix) {
-
-  console.log('------------------------------')
-  console.log('---------' + prefix + '----------');
-  //console.log(prefix + ': web3.eth.accounts = ' + web3.eth.accounts);
-  console.log(prefix + ': web3.eth.mining = ' + web3.eth.mining);
-  console.log(prefix + ': Alice (eth.coinbase): web3.eth.getBalance(accounts[' + web3.eth.accounts[0] + ']) = ' + web3.eth.getBalance(accounts[0]).toString(10));
-  console.log(prefix + ': Bob: web3.eth.getBalance(accounts[' + web3.eth.accounts[1] + ']) = ' + web3.eth.getBalance(accounts[1]).toString(10));
-  console.log(prefix + ': Carol: web3.eth.getBalance(accounts[' + web3.eth.accounts[2] + ']) = ' + web3.eth.getBalance(accounts[2]).toString(10));
-  console.log('------------------------------')
+function refreshBalances(splitterAddress) {
+  var splitterDiv = document.getElementById('contract');
+  var account0Div = document.getElementById('account0');
+  var account1Div = document.getElementById('account1');
+  var account2Div = document.getElementById('account2');
+  splitterDiv.innerText = web3.eth.getBalance(splitterAddress);
+  account0Div.innerText = web3.eth.getBalance(web3.eth.accounts[0].toString(10));
+  account1Div.innerText = web3.eth.getBalance(web3.eth.accounts[1].toString(10));
+  account2Div.innerText = web3.eth.getBalance(web3.eth.accounts[2].toString(10));
 
 }
 
- 
 function split() {
-  // just in case, let's make sure the default account is set up:
   
-  web3.eth.defaultAccount=web3.eth.coinbase;
+  // Get a Splitter instance
   split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2]);
-  console.log('------------------------------')
-  console.log('---------Splitter----------');
-  console.log('splitting: split.address = ' + split.address);
-  console.log('splitting: web3.eth.getBalance(accounts[' + split.address + ']) = ' + web3.eth.getBalance(split.address));
-  //console.log('splitting: sending gas to the contract: web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });');
-  //var txn = web3.eth.sendTransaction({ from: web3.eth.accounts[0], to: split.address, value: web3.toWei(1, "finney") });
-  //console.log("splitting: web3.eth.getTransactionReceipt(txHash).gasUsed = " + web3.eth.getTransactionReceipt(txn).gasUsed);
-  //console.log('splitting: web3.eth.getBalance(accounts[split.addres]) = ' + web3.eth.getBalance(split.address));
-  //console.log("splitting: Calling split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]})");
-  split.split.call(web3.eth.accounts[1], web3.eth.accounts[2],50000,{from: web3.eth.accounts[0]});
-  //console.log("splitting:  Calling simpleSend to send ether to 1 account (for simplicity)");
-  //split.simpleSend(accounts[1], 200, { from: accounts[0] }).then(function (result) { console.log('simpleSend() =  ' + result) }).catch(function(e){console.log(error);});
-  console.log("splitting: Everything is split() .. . but. .. not really because the balances didn't change because bob and carols addresses are messed up (even though they are passed into split() and set there) ");
-  console.log('------------------------------')
 
-  console.log('------------------------------')
-  console.log('---------Confirm Addresses----------');
-  split.bob.call().then(function (_result) { console.log('splitting: Bobs Address: split.bob.call() = ' + _result); }).catch(function (e) { console.error(e); });
-  split.carol.call().then(function (_result) { console.log('splitting: Carols Address: split.carol.call() = ' + _result); }).catch(function (e) { console.error(e); });
-  console.log('------------------------------')
+  // Copy in the nice-little function that will deal with the transaction delay  
+  web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
+      var transactionReceiptAsync;
+      interval = interval ? interval : 500;
+      transactionReceiptAsync = function(txnHash, resolve, reject) {
+          try {
+              var receipt = web3.eth.getTransactionReceipt(txnHash);
+              if (receipt == null) {
+                  setTimeout(function () {
+                      transactionReceiptAsync(txnHash, resolve, reject);
+                  }, interval);
+              } else {
+                  resolve(receipt);
+              }
+          } catch(e) {
+              reject(e);
+          }
+      };
 
-}
+      if (Array.isArray(txnHash)) {
+          var promises = [];
+          txnHash.forEach(function (oneTxHash) {
+              promises.push(web3.eth.getTransactionReceiptMined(oneTxHash, interval));
+          });
+          return Promise.all(promises);
+      } else {
+          return new Promise(function (resolve, reject) {
+                  transactionReceiptAsync(txnHash, resolve, reject);
+              });
+      }
+  };
 
-function refreshBalances(prefix){
-    web3.eth.getBalance(accounts[0], function (err, _balance) { console.log('balance0' + prefix + ' = ' + _balance.toString()); });
-    web3.eth.getBalance(accounts[1], function (err, _balance) { console.log('balance1' + prefix + ' = ' + _balance.toString()); });
-    web3.eth.getBalance(accounts[2], function (err, _balance) { console.log('balance2' + prefix + ' = ' + _balance.toString()); }); 
-}
+  
+  // Update the UI with the starting balances and statii
+  refreshBalances(split.address);
+  setStatus('Calling Splitter.split() . . . ');
+  
+  // Do the split
+  split.split(web3.eth.accounts[1], web3.eth.accounts[2], { from: web3.eth.accounts[0], value: web3.toWei(1) })
+    .then(function (txn) {
+      setStatus("Checking Transaction " + txn + ' . . . ');
+      return web3.eth.getTransactionReceiptMined(txn);
+    })
+    .then(function (receipt) {
+      setStatus('Receipt received.  receipt.gasUsed = ' + receipt.gasUsed + '.  ');
+      refreshBalances(split.address);
+      setStatus('All Done');
+    })
+    .catch(function (e) {
+      setStatus('There was an error in Splitter.split() - ' + e.message);
+    });
+
+ }
+ 
 
 window.onload = function() {
 
@@ -44686,13 +44680,8 @@ window.onload = function() {
       alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
     }
-    
-    accounts = accs;
-    account = accounts[0];
 
-    getBasicInfo('pre-split');
     split();
-    getBasicInfo('post-split');
 
   });
 }

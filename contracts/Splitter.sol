@@ -11,17 +11,11 @@ contract Splitter {
         carol = addr2;   
     }
 
-    function split(address addr1, address addr2, uint sendAmount) returns (bool) {
-        owner = msg.sender;
-        bob = addr1;
-        carol = addr2;         
-        bool bobResult = addr1.send(sendAmount/2);
-        bool carolResult = addr2.send(sendAmount/2);
-        return bobResult && carolResult;
-    }
-
-    function simpleSend(address addr1, uint sendAmount) returns (bool) {
-        return addr1.send(sendAmount);
+    function split(address toWhom1, address toWhom2) payable {
+        var half = msg.value / 2;
+        var otherhalf = msg.value - half; 
+        if (!toWhom1.send(half)) throw;
+        if (!toWhom2.send(otherhalf)) throw;
     }
 
     function killMe() returns (bool) {
