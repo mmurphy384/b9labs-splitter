@@ -1,21 +1,45 @@
 pragma solidity ^0.4.5;
 
+
 contract Splitter {
     address owner;
-    address public bob;
-    address public carol;
+    uint counter;
+    uint public maxAccounts;
+    mapping (uint => address) accounts;
 
-    function Splitter (address addr1, address addr2) {
+    function Splitter () {
         owner = msg.sender;
-        bob = addr1;
-        carol = addr2;   
+        counter = 0;
+        maxAccounts = 2;
     }
 
-    function split(address toWhom1, address toWhom2) payable {
+    function addMyAccount() {
+        // Only allow 2 accounts
+        if (counter > (maxAccounts-1)) throw;
+
+        accounts[counter] = msg.sender;
+        counter +=1;
+    }
+
+    function getNumAccounts() constant returns (uint) {
+        return counter;
+    }
+
+    function getAccount(uint _index) constant returns (address) {
+        return accounts[_index];
+    }
+
+    function getMyBalance() constant returns (uint) {
+        return msg.sender.balance;
+    }
+
+    function split() payable {
         var half = msg.value / 2;
         var otherhalf = msg.value - half; 
-        if (!toWhom1.send(half)) throw;
-        if (!toWhom2.send(otherhalf)) throw;
+        for (var i=0; i<(maxAccounts-1);i++) {
+            if (!accounts[i].send(half)) throw;
+            if (!accounts[i].send(otherhalf)) throw;
+        }
     }
 
     function killMe() returns (bool) {

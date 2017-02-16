@@ -1,10 +1,13 @@
-#Mike Murphys God Awful Splitter Contract.
+#Mike Murphy's Splitter Contract.
 
 At this point, the contract is all hard-coded and it only writes out
 to the console.log()
 
-As of this time, everything seems to deploy. But when I run split, the balances don't change for Alice, Bob or Carol.
-
-I just realize the difficult part about this.  You won't be able to test this on your instance because the accounts are hard coded.
+To Do List:
+1) Get the constructor to set Bob and Carol's addresses to account[1] and account[2]
+2) Create a test to test the constructor settings (Bob, Carol's address)
+3) Create a test to get the balance for Alice, Bob and Carol.
+3) Get the split() so that it can use the state variables for Bob and Carol's address.
+4) Create a test to exercise the split. 
 
 

@@ -48,3 +48,10 @@ h3 {
 #balance {
   color: black;
 }
+
+#left-side {
+  float: left;
+}
+#right-side {
+  float: right;
+}
