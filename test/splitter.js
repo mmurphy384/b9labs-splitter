@@ -77,26 +77,30 @@ contract('Splitter', function () {
 		split.addMyAccount({ from: web3.eth.accounts[2] });
 
 		return split.getMyBalance.call({ from: web3.eth.accounts[1] }).then(function (_balance10) {
+			// set bobs initial balance
 			bobStartBalance = _balance10.toNumber();
 			bobExpectedEndBalance = bobStartBalance + half;
 			return split.getMyBalance.call({ from: web3.eth.accounts[2] });
 		}).then(function (_balance20) {
+			// set carols initial balance and start the split.
 			carolStartBalance = _balance2.toNumber();
 			carolExpectedEndBalance = carolStartBalance + otherHalf;
 			return split.split({ from: web3.eth.accounts[0], value: web3.toWei(sendAmount) })
 		}).then(function (txHash) {
+			// wait for the split to happen
 			return web3.eth.getTransactionReceiptMined(txHash);
 		}).then(function (receipt) { 
 			return split.getMyBalance.call({ from: web3.eth.accounts[1] });
 		}).then(function (_balance11) { 
+			// get bob's final balance
 			bobEndBalance = _balance11.toNumber();
 			return split.getMyBalance.call({ from: web3.eth.accounts[2] });
 		}).then(function (_balance22) { 
+			// get carol's final balance and do the assertions.
 			carolEndBalance = _balance22;
 			assert.equal(bobEndBalance, bobExpectedEndBalance, "Bob received his half");
 			assert.equal(carolEndBalance, carolExpectedEndBalance, "Carol receive her half ");
 		});
-
 	});
 
 
