@@ -70,8 +70,7 @@ contract('Splitter', function () {
 		var carolEndBalance;
 		var carolExpectedEndBalance;
 
-		// Initialize the contract and get starting balances
-		// this will be done with an even number of eth
+		// Initialize the contract and add 2 accounts to the contract
 		var split = Splitter.deployed();
 		split.addMyAccount({ from: web3.eth.accounts[1] });
 		split.addMyAccount({ from: web3.eth.accounts[2] });
