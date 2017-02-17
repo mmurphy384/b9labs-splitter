@@ -1,5 +1,6 @@
 contract('Splitter', function () {
-
+	// This function is used to help deal with the delay associated with mining.
+	// I'm not sure if I have to add this within the function or not.
 	web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
 			var transactionReceiptAsync;
 			interval = interval ? interval : 500;
@@ -30,30 +31,75 @@ contract('Splitter', function () {
 							});
 			}
 	};
-		
-	var numStartingAccounts = 0;
-	var numEndingAccounts = 0;
-	var maxAccounts = 0;
-	var txHash;
+
+	describe("Basic Tests", function () {
+		before("Deploy and Prepare", function () {
+		});
+		it("should verify that the max number of accounts in the splitter is 2", function () {
+			var split = Splitter.deployed();
+			split.maxAccounts.call().then(function (_result) {
+				assert.equal(_result, 2, "The maximum number of accounts is " + _result);
+			});		
+		});
+	});
+
 
 	it("should add two accounts and prevent a third from being added.", function () {
 		var split = Splitter.deployed();
 		split.maxAccounts.call().then(function(_result){maxAccounts = _result;});
 		split.addMyAccount({ from: web3.eth.accounts[1] });
-		split.addMyAccount({ from: web3.eth.accounts[2] }).then(function (_txHash) {
-			txHash = _txHash;
+		split.addMyAccount({ from: web3.eth.accounts[2] })
+			.then(function (_txHash) {
+				web3.eth.getTransactionReceiptMined(_txHash)
+					.then(function () { 
+						split.getNumAccounts.call().then(function (_result) {
+							assert.equal(_result, 2, "The number of accounts is " + _result); 
+						});							
+					});
+			});
+	});
+
+	it("Should perform the split function properly, sending half to Bob/Carol.", function () {
+		var sendAmount = 4;
+		var half = web3.toWei(sendAmount) / 2;
+		var otherHalf = web3.toWei(sendAmount) - half;
+		var bobStartBalance;
+		var bobEndBalance;
+		var bobExpectedEndBalance;
+		var carolStartBalance;
+		var carolEndBalance;
+		var carolExpectedEndBalance;
+
+		// Initialize the contract and get starting balances
+		// this will be done with an even number of eth
+		var split = Splitter.deployed();
+		split.addMyAccount({ from: web3.eth.accounts[1] });
+		split.addMyAccount({ from: web3.eth.accounts[2] });
+
+		return split.getMyBalance.call({ from: web3.eth.accounts[1] }).then(function (_balance10) {
+			bobStartBalance = _balance10.toNumber();
+			bobExpectedEndBalance = bobStartBalance + half;
+			return split.getMyBalance.call({ from: web3.eth.accounts[2] });
+		}).then(function (_balance20) {
+			carolStartBalance = _balance2.toNumber();
+			carolExpectedEndBalance = carolStartBalance + otherHalf;
+			return split.split({ from: web3.eth.accounts[0], value: web3.toWei(sendAmount) })
+		}).then(function (txHash) {
+			return web3.eth.getTransactionReceiptMined(txHash);
+		}).then(function (receipt) { 
+			return split.getMyBalance.call({ from: web3.eth.accounts[1] });
+		}).then(function (_balance11) { 
+			bobEndBalance = _balance11.toNumber();
+			return split.getMyBalance.call({ from: web3.eth.accounts[2] });
+		}).then(function (_balance22) { 
+			carolEndBalance = _balance22;
+			assert.equal(bobEndBalance, bobExpectedEndBalance, "Bob received his half");
+			assert.equal(carolEndBalance, carolExpectedEndBalance, "Carol receive her half ");
 		});
 
-		// wait for the last transaction to get mined
-		var result = web3.eth.getTransactionReceiptMined(txHash)
-			.then(function () { 
-				split.getNumAccounts.call().then(function (_result) {
-					numEndingAccounts = _result;
-				});							
-			});
-
-		//assert.equal(maxAccounts,2, "The maximum number of accounts is " + maxAccounts);
-		assert.equal(numEndingAccounts, 2, "The number of accounts is " + numEndingAccounts);
-
 	});
+
+
 });
+
+
