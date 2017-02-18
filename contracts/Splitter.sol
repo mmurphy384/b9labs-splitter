@@ -1,45 +1,55 @@
 pragma solidity ^0.4.5;
 
-
 contract Splitter {
     address owner;
     uint counter;
-    uint public maxAccounts;
-    mapping (uint => address) accounts;
+    uint maxAccounts;
+    mapping (string => address) accounts;
+
+    event logSplit(address sender, uint value, address address1, address address2); 
 
     function Splitter () {
         owner = msg.sender;
-        counter = 0;
+        counter = 1;
         maxAccounts = 2;
     }
 
-    function addMyAccount() {
-        // Only allow 2 accounts
-        if (counter > (maxAccounts-1)) throw;
+    function addMyAccount(string _accountName) {
+        // Only allow 2 accounts. Need to count, 
+        // because we can't use accounts.length.
+        // alice is eth.coinbase.
+        if (counter > (maxAccounts)) throw;
 
-        accounts[counter] = msg.sender;
+        accounts[_accountName] = msg.sender;
         counter +=1;
+    }
+
+    function getMaxAccounts() constant returns (uint) {
+        return maxAccounts;
     }
 
     function getNumAccounts() constant returns (uint) {
         return counter;
     }
 
-    function getAccount(uint _index) constant returns (address) {
-        return accounts[_index];
+    function getAccount(string _name) constant returns (address) {
+        return accounts[_name];
     }
 
-    function getMyBalance() constant returns (uint) {
-        return msg.sender.balance;
+    function getMyBalance(string _name) constant returns (uint) {
+        return accounts[_name].balance;
     }
 
-    function split() payable {
+    function split(string _name1, string _name2) payable {
         var half = msg.value / 2;
         var otherhalf = msg.value - half; 
-        for (var i=0; i<(maxAccounts-1);i++) {
-            if (!accounts[i].send(half)) throw;
-            if (!accounts[i].send(otherhalf)) throw;
-        }
+
+        // I would love to find a way to abstract the account names 
+        // and quantity, but that's a project for another day.
+        if (!accounts[_name1].send(half)) throw;
+        if (!accounts[_name2].send(otherhalf)) throw;
+        logSplit(msg.sender, msg.value, accounts[_name1], accounts[_name2]);
+
     }
 
     function killMe() returns (bool) {
@@ -49,5 +59,7 @@ contract Splitter {
         }
     }
 
-    function () payable {}
+    function () payable {
+
+    }
 }
