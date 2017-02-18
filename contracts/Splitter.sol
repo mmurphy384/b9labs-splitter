@@ -10,7 +10,7 @@ contract Splitter {
 
     function Splitter () {
         owner = msg.sender;
-        counter = 1;
+        counter = 0;
         maxAccounts = 2;
     }
 
@@ -18,14 +18,10 @@ contract Splitter {
         // Only allow 2 accounts. Need to count, 
         // because we can't use accounts.length.
         // alice is eth.coinbase.
-        if (counter > (maxAccounts)) throw;
+        if (counter >= (maxAccounts)) throw;
 
         accounts[_accountName] = msg.sender;
         counter +=1;
-    }
-
-    function getMaxAccounts() constant returns (uint) {
-        return maxAccounts;
     }
 
     function getNumAccounts() constant returns (uint) {
