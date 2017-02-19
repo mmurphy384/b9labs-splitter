@@ -12,6 +12,10 @@ To Do List:
   * DONE!
 4. Create a test to exercise the split. 
   * DONE!  
-
+5. Create a structure to hold the Transaction {amountSuccessfullySentToBob, amountSuccessfullySentToCarol} 
+   so that we can maintain the status of the split.  For example, if bob.send works and carol.send doesn't.
+   we might like to record what was actually sent so that we could roll it back.  THis can be built out
+   to support letting all 3 parties approve the transaction.
+  * JUST A THOUGHT AT THIS POINT
 
 

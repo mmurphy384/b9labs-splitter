@@ -35,75 +35,51 @@ contract('Splitter', function () {
 	describe("Splitter Tests", function () {
 		
 		var instance;
-		var numAccounts = 0;
-		
-		beforeEach("Deploy and make sure there are 2 accounts and get the address and starting balances.", function () {
+		var sendAmount = 20;
+		var half = (sendAmount / 2);
+		var otherHalf = (sendAmount - half);
+		var aliceAddress = web3.eth.accounts[0];
+		var bobAddress = web3.eth.accounts[1];
+		var carolAddress = web3.eth.accounts[2];
+		var bobStartingBalance = 0;
+		var carolStartingBalance = 0;
+
+		beforeEach("Deploy contract and get instance.", function () {
 			instance = Splitter.deployed();
-			var split = Splitter.at(instance.address);
-			return split.addMyAccount('bob', { from: web3.eth.accounts[1] })
-			.then(function (_txHash) {
-				// wait for it to happen	
-				return web3.eth.getTransactionReceiptMined(_txHash);
-			}).then(function () {
-				return split.addMyAccount('carol', { from: web3.eth.accounts[2] });
-			}).then(function (_txHash) {
-				// wait for it to happen
-				return web3.eth.getTransactionReceiptMined(_txHash);
-			}).then(function () {
-				return split.getNumAccounts.call();
+			return instance.getBalance.call('bob')
+			.then(function (_result) {
+				bobStartingBalance = _result.toNumber();
+				return instance.getBalance.call('carol');
 			}).then(function (_result) {
-				numAccounts = _result;
+				carolStartingBalance = _result.toNumber();
 			});
 		});
 
-		// it("should verify that 2 accoutns exist in the contract.", function () {
- 		// 	assert.equal(numAccounts, 2, "The actual number of accounts is " + numAccounts);
-		// });
-		
-		it("Should perform the split function properly, sending half to Bob/Carol.", function () {
-			var name1 = "bob";
-			var name2 = "carol";
-			var sendAmount = 1;
-			var half = web3.toWei(sendAmount) / 2;
-			var otherHalf = web3.toWei(sendAmount) - half;
-			var name1StartBalance = 0;
-			var name2StartBalance = 0;
-			var name1StartBalance;
-			var name1EndBalance;
-			var name1ExpectedEndBalance;
-			var name2StartBalance;
-			var name2EndBalance;
-			var name2ExpectedEndBalance;
-
-			// Initialize the contract and add 2 accounts to the contract
+		it("should verify that the split will send half to bob and half to carol.", function () {
 			var split = Splitter.at(instance.address);
-			return split.getMyBalance.call(name1).then(function (_balance10) {
-				// set name1s initial balance
-				name1StartBalance = _balance10.toNumber();
-				name1ExpectedEndBalance = name1StartBalance + half;
-				return split.getMyBalance.call(name2);
-			}).then(function (_balance20) {
-				// set carols initial balance and start the split.
-				name2StartBalance = _balance20.toNumber();
-				name2ExpectedEndBalance = name2StartBalance + otherHalf;
-				return split.split(name1, name2, { from: web3.eth.accounts[0], value: web3.toWei(sendAmount) });
-			}).then(function (txHash) {
-				// wait for the split to happen
-				return web3.eth.getTransactionReceiptMined(txHash);
-			}).then(function (receipt) { 
-				assert.equal(1, 1, "Split Receipt received");	
-				return split.getMyBalance.call(name1);
-			}).then(function (_balance11) { 
-				// get name1's final balance
-				name1EndBalance = _balance11.toNumber();
-				return split.getMyBalance.call(name2);
-				}).then(function (_balance22) {
-					// get carol's final balance and do the assertions.
-					name2EndBalance = _balance22;
-			}).then(function () {
-				assert.equal(name1EndBalance, name1ExpectedEndBalance, name1 + " received its half");
-				assert.equal(name2EndBalance, name2ExpectedEndBalance, name2 + " received its half ");
-			});
+			return split.getAddress.call("alice")
+				.then(function (_result) {
+					assert.equal(aliceAddress, _result, "alices address is correct");
+					return split.getAddress.call("bob");
+				}).then(function (_result) {
+					assert.equal(bobAddress, _result, "bobs address is correct");
+					return split.getAddress.call("carol");
+				}).then(function (_result) {
+					assert.equal(carolAddress, _result, "carols address is correct");
+					return split.split({from:web3.eth.accounts[0]});
+				}).then(function (txn) {
+					return web3.eth.getTransactionReceiptMined(txn);
+				}).then(function (_result) {
+					assert.equal(1, 1, "Transaction successfully mined");
+					return split.getBalance.call('bob');
+				}).then(function (_result) { 
+					var expected = (bobStartingBalance + half);
+					assert.equal(expected, _result.toNumber(), "bob received half");
+					return split.getBalance.call('carol');
+				}).then(function (_result) { 
+					var expected = (carolStartingBalance + otherHalf);
+					assert.equal(expected, _result.toNumber(), "carol received half");
+				})
 		});
 	});
 });
