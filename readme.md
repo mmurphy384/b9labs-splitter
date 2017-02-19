@@ -6,7 +6,7 @@ To Do List:
 
 1. Get the constructor to set Bob and Carol's addresses to account[1] and account[2] 
   * DONE!
-2. Create a test to add 2 accounts and confirm they were added.
+2. Create a test to instantiate the contract and set it up for use.
   * DONE!
 3. Get the split() so that it can dynamically figure out who to send the ether to.
   * DONE!
@@ -19,5 +19,9 @@ To Do List:
    we might like to record what was actually sent so that we could roll it back.  THis can be built out
    to support letting all 3 parties approve the transaction.
   * JUST A THOUGHT AT THIS POINT
-
+7. More things to consider:
+  * Check the validity of addresses with a modifier
+  * Set up logs so that a web UI can read them (see 'solidiy elements' chapter)
+  * Review the fallback function.  Right now, it's only payable.
+  * Still need to study re-entrance.
 
