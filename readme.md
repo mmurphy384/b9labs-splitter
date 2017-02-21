@@ -17,7 +17,7 @@ To Do List:
 6. Create a structure to hold the Transaction {amountSuccessfullySentToBob, amountSuccessfullySentToCarol} 
    so that we can maintain the status of the split.  For example, if bob.send works and carol.send doesn't.
    we might like to record what was actually sent so that we could roll it back.  THis can be built out
-   to support letting all 3 parties approve the transaction.
+   to support letting all 3 parties approve the transaction. - -- - sounds like this is handled automatically.!
   * JUST A THOUGHT AT THIS POINT
 7. More things to consider:
   * Check the validity of addresses with a modifier
