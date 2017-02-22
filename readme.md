@@ -17,7 +17,7 @@ At this point, the contract is getting to a decent proto-type state
 4. Create a test to exercise the split. 
   * DONE!  
 5. Create the UI / Web Pages
-  * IN PROGRESS - I saw a great tool on ReactJS and I'm going to try to get that to work.
+  * IN PROGRESS - Preliminary UI working.  Need to add a watcher/listener so the balances refresh.
 6. More things to consider:
   * Set up logs so that a web UI can read them (Having problems with this)
   * Review the fallback function.  Right now, it's only payable.
