@@ -4,56 +4,54 @@ contract Splitter {
     
     address owner;
     bool isActive;
-    mapping (string => address) accounts;
+    mapping (uint => address) accounts;
 
+    event onTransfer(address sender, address receiver, uint value, uint timeStamp); 
+    event onSplit(address sender, uint weiTotal, uint weiToAddr1, uint weiToAddr2, uint timestamp);
 
-    event logSplit(address sender, uint value, address address1, address address2); 
+    modifier isOwner () {
+        if (msg.sender != owner) {
+            throw;
+        }
+        _;
+    }
 
-    function Splitter (address _address1, address _address2) {
+    modifier hasFunds () {
+        if (msg.sender.balance > msg.value) {
+            throw;
+        }
+        _;
+    }
+
+    function getBalance (uint _index) constant returns (uint) {
+        return accounts[_index].balance;
+    }
+
+    function Splitter (address _address1, address _address2)  {
         owner = msg.sender;
         isActive = true;
-        accounts['alice'] = owner;
-        accounts['bob'] = _address1;
-        accounts['carol'] = _address2;
+        accounts[0] = owner;
+        accounts[1] = _address1;
+        accounts[2] = _address2;
     }
 
-    // Provide a GETter so owner can manage addresses.
-    function getAddress(string _name) constant returns (address) {
-        return accounts[_name];
-    }
-    
-    // Provider a SETter so the owner can update an address.
-    function updateAddress(string _name, address _addr) returns (address) {
-        if (owner != msg.sender) throw;
-        accounts[_name] = _addr;
-    }    
-
-    function resurrect() returns (address) {
-        if (owner != msg.sender) throw;
-        isActive = true;
-    }
-
-    function getBalance(string _name) constant returns (uint) {
-        return accounts[_name].balance;
-    }
-
-    function split()  payable  {
+    function split() isOwner() payable  {
         
         if (!isActive) throw;
 
         var half = msg.value / 2;
         var otherhalf = msg.value - half; 
 
-        if (!accounts['bob'].send(half)) throw;
-        if (!accounts['carol'].send(otherhalf)) throw;
-        logSplit(msg.sender, msg.value, accounts['bob'], accounts['carol']);
+        if (!accounts[1].send(half)) throw;
+        onTransfer(msg.sender,accounts[1],half, now);
+        if (!accounts[2].send(otherhalf)) throw;
+        onTransfer(msg.sender,accounts[2],otherhalf, now);
+        onSplit(msg.sender, msg.value, half, otherhalf, now);
     }
 
-    function killMe() returns (bool) {
-        if (msg.sender == owner) {
-            isActive = false;
-            return true;
-        }
+    function killMe() isOwner() returns (bool) {
+        isActive = false;
+        return true;
     }
 
     function () payable {
