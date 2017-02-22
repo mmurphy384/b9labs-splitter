@@ -2,7 +2,11 @@
 
 At this point, the contract is getting to a decent proto-type state
 
-To Do List:
+##Latest Revision:  
+2/21/2017 - 3:08 GMT - Applied Xaviers recommendations in the tests and contract code.
+
+
+##To Do List:
 
 1. Get the constructor to set Bob and Carol's addresses to account[1] and account[2] 
   * DONE!
@@ -13,15 +17,9 @@ To Do List:
 4. Create a test to exercise the split. 
   * DONE!  
 5. Create the UI / Web Pages
-  * THIS DOESNT WORK
-6. Create a structure to hold the Transaction {amountSuccessfullySentToBob, amountSuccessfullySentToCarol} 
-   so that we can maintain the status of the split.  For example, if bob.send works and carol.send doesn't.
-   we might like to record what was actually sent so that we could roll it back.  THis can be built out
-   to support letting all 3 parties approve the transaction. - -- - sounds like this is handled automatically.!
-  * JUST A THOUGHT AT THIS POINT
-7. More things to consider:
-  * Check the validity of addresses with a modifier
-  * Set up logs so that a web UI can read them (see 'solidiy elements' chapter)
+  * IN PROGRESS - I saw a great tool on ReactJS and I'm going to try to get that to work.
+6. More things to consider:
+  * Set up logs so that a web UI can read them (Having problems with this)
   * Review the fallback function.  Right now, it's only payable.
   * Still need to study re-entrance.
 
