@@ -35,7 +35,7 @@ contract Splitter {
         accounts[2] = _address2;
     }
 
-    function split() isOwner() payable  {
+    function split() payable  {
         
         if (!isActive) throw;
 
