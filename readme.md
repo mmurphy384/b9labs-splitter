@@ -17,9 +17,10 @@ At this point, the contract is getting to a decent proto-type state
 4. Create a test to exercise the split. 
   * DONE!  
 5. Create the UI / Web Pages
-  * IN PROGRESS - Preliminary UI working.  Need to add a watcher/listener so the balances refresh.
+  * DONE! (well.  It could use a little bullet-proofing, but it works)
+6. Create a watcher/listener to show logs
+  * Started
 6. More things to consider:
-  * Set up logs so that a web UI can read them (Having problems with this)
   * Review the fallback function.  Right now, it's only payable.
   * Still need to study re-entrance.
 
