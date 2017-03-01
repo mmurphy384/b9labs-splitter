@@ -3,8 +3,8 @@
 At this point, the contract is getting to a decent proto-type state
 
 ##Latest Revision:  
-2/21/2017 - 3:08 GMT - Applied Xaviers recommendations in the tests and contract code.
-
+2/21/2017 - 03:08 GMT - Applied Xaviers recommendations in the tests and contract code.
+2/28/2017 - 03:44 GMT - Created a working UI.  Split works.  Balances refresh.
 
 ##To Do List:
 
