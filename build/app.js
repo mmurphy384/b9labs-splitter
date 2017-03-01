@@ -44805,6 +44805,7 @@ var accounts = [];
 var account0Div;
 var account1Div;
 var account2Div;
+var instance;
 
 function setStatus(message) {
   var status = document.getElementById("status");
@@ -44819,10 +44820,7 @@ function refreshBalances() {
 
 function splitWei(amount) {
 
-  split = Splitter.deployed();
-  console.log("Splitter Contract is Deployed.  Address = " + split.address);
-
-  split.split({ from: web3.eth.accounts[0], value: amount })
+  instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
       return web3.eth.getTransactionReceiptMined(txn);
     })
@@ -44899,7 +44897,10 @@ window.onload = function() {
     accounts = accs;
     refreshBalances(accs);
   });
-  
+
+
+  instance = Splitter.deployed();
+  logSplits();
   document.getElementById('btn-split-10').addEventListener('click', function() {
     setStatus("Starting Split");
     splitWei(10);
@@ -44910,4 +44911,27 @@ window.onload = function() {
     splitWei(9);
   });  
 
+}
+
+function logSplits() {
+  instance.onSplit()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
+      else
+        setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
+                    value.args.weiToAddr1 + " wei to Bob and " +
+                    value.args.weiToAddr2 + " wei to Carol");
+      refreshBalances();
+    });
+}
+
+function logTransfers() {
+  instance.onTransfer()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
+      else
+        setStatus(value.args.value + " wei sent from " + value.args.sender + " to " + value.args.receiver);
+    });
 }
