@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1487730599879,
+    "updated_at": 1488336594287,
     "links": {},
-    "address": "0xb4652075e0b985a12cf3a244e2f38d737284b446"
+    "address": "0xd60f92569c102bbd04fb85cb62b1f3776536d4e0"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1487730599883,
+    "updated_at": 1488336594290,
     "links": {
-      "ConvertLib": "0xb4652075e0b985a12cf3a244e2f38d737284b446"
+      "ConvertLib": "0xd60f92569c102bbd04fb85cb62b1f3776536d4e0"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1487730599886,
-    "address": "0xd4de637d320b5ff0b46de38c9a53cc882d8f6187",
+    "updated_at": 1488336594292,
+    "address": "0x81c9638e74895af1ba99d4be60cf725ae5ab3eb2",
     "links": {}
   }
 };
@@ -7352,6 +7352,24 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "function"
       },
       {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "_index",
+            "type": "uint256"
+          }
+        ],
+        "name": "getAddress",
+        "outputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
         "constant": false,
         "inputs": [],
         "name": "split",
@@ -7437,7 +7455,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405234610000576040516040806104ae8339810160405280516020909101515b6000805460a060020a60ff0219600160a060020a03338116600160a060020a03199384161791909116740100000000000000000000000000000000000000001780845560016020527fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841617905560029092527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928416929091169190911790555b50505b6103a28061010c6000396000f3006060604052361561003b5763ffffffff60e060020a6000350416631e0104398114610044578063b603cd8014610066578063f765417614610087575b6100425b5b565b005b3461000057610054600435610091565b60408051918252519081900360200190f35b34610000576100736100b0565b604080519115158252519081900360200190f35b6100426100f2565b005b600081815260016020526040902054600160a060020a0316315b919050565b6000805433600160a060020a039081169116146100cc57610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b60008054819033600160a060020a0390811691161461011057610000565b3433600160a060020a031631111561012757610000565b60005474010000000000000000000000000000000000000000900460ff16151561015057610000565b5050600160008181526020919091527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f54604051600234908104939084900392600160a060020a0316916108fc85150291859190818181858888f1935050505015156101bb57610000565b6001600081905260209081527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f5460408051600160a060020a0333811682529092169282019290925280820184905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a16002600090815260016020527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f54604051600160a060020a039091169183156108fc02918491818181858888f19350505050151561029957610000565b6002600052600160209081527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f5460408051600160a060020a0333811682529092169282019290925280820183905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a160408051600160a060020a03331681523460208201528082018490526060810183905242608082015290517fb7a9df5e5cf227aa5636b1d7846444ce7ffea6e0e145e6523ecc14ef9d9b663e9181900360a00190a15b5b5b50505600a165627a7a72305820f713c07fc48e59aa4201fd51ca2b6f42e17fc100e14b733358677a5985d5ed3f0029",
+    "unlinked_binary": "0x606060405234610000576040516040806104e08339810160405280516020909101515b6000805460a060020a60ff0219600160a060020a03338116600160a060020a03199384161791909116740100000000000000000000000000000000000000001780845560016020527fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841617905560029092527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928416929091169190911790555b50505b6103d48061010c6000396000f300606060405236156100465763ffffffff60e060020a6000350416631e010439811461004f578063b603cd8014610071578063b93f9b0a14610092578063f7654176146100be575b61004d5b5b565b005b346100005761005f6004356100c8565b60408051918252519081900360200190f35b346100005761007e6100e7565b604080519115158252519081900360200190f35b34610000576100a2600435610129565b60408051600160a060020a039092168252519081900360200190f35b61004d610158565b005b600081815260016020526040902054600160a060020a0316315b919050565b6000805433600160a060020a0390811691161461010357610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b6000600282111561013957610000565b50600081815260016020526040902054600160a060020a03165b919050565b60008054819074010000000000000000000000000000000000000000900460ff16151561018457610000565b5050600160008181526020919091527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f54604051600234908104939084900392600160a060020a0316916108fc85150291859190818181858888f1935050505015156101ef57610000565b6001600081905260209081527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f5460408051600160a060020a0333811682529092169282019290925280820184905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a16002600090815260016020527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f54604051600160a060020a039091169183156108fc02918491818181858888f1935050505015156102cd57610000565b6002600052600160209081527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f5460408051600160a060020a0333811682529092169282019290925280820183905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a160408051600160a060020a03331681523460208201528082018490526060810183905242608082015290517fb7a9df5e5cf227aa5636b1d7846444ce7ffea6e0e145e6523ecc14ef9d9b663e9181900360a00190a15b50505600a165627a7a72305820f0770b165f2b337c84f8c98d04ee64e2064f044b0193bbcd71ea61ecf8a6b4500029",
     "events": {
       "0x719e07d6e03b88920bc0dde696425d7a6276b6a218d46acd15abeb96205a094a": {
         "anonymous": false,
@@ -7585,9 +7603,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1487730599891,
+    "updated_at": 1488336594298,
     "links": {},
-    "address": "0x8e4273618bc465c763473ac9902a7836bc12edb4"
+    "address": "0xffcf0586c44e8678f8f739f902c2071a97adda9f"
   }
 };
 
@@ -44779,32 +44797,60 @@ window.addEventListener('load', function() {
 //// END TRUFFLE BOOTSTRAP                                      
 
  
-
+//-------------------------------------------
+// Create a few global variables to make life
+// a little eaiser
+//-------------------------------------------
+var accounts = [];
+var account0Div;
+var account1Div;
+var account2Div;
 
 function setStatus(message) {
   var status = document.getElementById("status");
   status.innerText = message;
 };
 
-
-function refreshBalances(splitterAddress) {
-  var splitterDiv = document.getElementById('contract');
-  var account0Div = document.getElementById('account0');
-  var account1Div = document.getElementById('account1');
-  var account2Div = document.getElementById('account2');
-  splitterDiv.innerText = web3.eth.getBalance(splitterAddress);
-  account0Div.innerText = web3.eth.getBalance(web3.eth.accounts[0].toString(10));
-  account1Div.innerText = web3.eth.getBalance(web3.eth.accounts[1].toString(10));
-  account2Div.innerText = web3.eth.getBalance(web3.eth.accounts[2].toString(10));
-
+function refreshBalances() {
+  account0Div.innerText = web3.eth.getBalance(accounts[0]);
+  account1Div.innerText = web3.eth.getBalance(accounts[1]);
+  account2Div.innerText = web3.eth.getBalance(accounts[2]);
 }
 
-function split() {
-  
-  // Get a Splitter instance
-  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2]);
+function splitWei(amount) {
 
-  // Copy in the nice-little function that will deal with the transaction delay  
+  split = Splitter.deployed();
+  console.log("Splitter Contract is Deployed.  Address = " + split.address);
+
+  split.split({ from: web3.eth.accounts[0], value: amount })
+    .then(function (txn) {
+      return web3.eth.getTransactionReceiptMined(txn);
+    })
+    .then(function (receipt) {
+      return  web3.eth.getBalance(accounts[0]);
+    })
+    .then(function (_balance) {
+      account0Div.innerText = _balance;
+      return  web3.eth.getBalance(accounts[1]);
+    })
+    .then(function (_balance) {
+      account1Div.innerText = _balance;
+      return  web3.eth.getBalance(accounts[2]);
+    })
+    .then(function (_balance) {
+      account2Div.innerText = _balance;
+    })
+    .catch(function (e) {
+      console.log('There was an error in Splitter.split() - ' + e.message);
+    });
+ }
+
+window.onload = function() {
+
+  //--------------------------------------
+  // Copy in the nice-little function that 
+  // will deal with the transaction delay
+  //--------------------------------------
   web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
       var transactionReceiptAsync;
       interval = interval ? interval : 500;
@@ -44836,31 +44882,10 @@ function split() {
       }
   };
 
+ account0Div = document.getElementById('account0');
+ account1Div = document.getElementById('account1');
+ account2Div = document.getElementById('account2');
   
-  // Update the UI with the starting balances and statii
-  refreshBalances(split.address);
-  setStatus('Calling Splitter.split() . . . ');
-  
-  // Do the split
-  split.split(web3.eth.accounts[1], web3.eth.accounts[2], { from: web3.eth.accounts[0], value: web3.toWei(1) })
-    .then(function (txn) {
-      setStatus("Checking Transaction " + txn + ' . . . ');
-      return web3.eth.getTransactionReceiptMined(txn);
-    })
-    .then(function (receipt) {
-      setStatus('Receipt received.  receipt.gasUsed = ' + receipt.gasUsed + '.  ');
-      refreshBalances(split.address);
-      setStatus('All Done');
-    })
-    .catch(function (e) {
-      setStatus('There was an error in Splitter.split() - ' + e.message);
-    });
-
- }
- 
-
-window.onload = function() {
-
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
       alert("There was an error fetching your accounts.");
@@ -44871,8 +44896,18 @@ window.onload = function() {
       alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
     }
-
-    split();
-
+    accounts = accs;
+    refreshBalances(accs);
   });
+  
+  document.getElementById('btn-split-10').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(10);
+  });  
+  
+  document.getElementById('btn-split-9').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(9);
+  });  
+
 }

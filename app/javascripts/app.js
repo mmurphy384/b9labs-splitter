@@ -1,28 +1,57 @@
+//-------------------------------------------
+// Create a few global variables to make life
+// a little eaiser
+//-------------------------------------------
+var accounts = [];
+var account0Div;
+var account1Div;
+var account2Div;
 
 function setStatus(message) {
   var status = document.getElementById("status");
   status.innerText = message;
 };
 
-
-function refreshBalances(splitterAddress) {
-  var splitterDiv = document.getElementById('contract');
-  var account0Div = document.getElementById('account0');
-  var account1Div = document.getElementById('account1');
-  var account2Div = document.getElementById('account2');
-  splitterDiv.innerText = web3.eth.getBalance(splitterAddress);
-  account0Div.innerText = web3.eth.getBalance(web3.eth.accounts[0].toString(10));
-  account1Div.innerText = web3.eth.getBalance(web3.eth.accounts[1].toString(10));
-  account2Div.innerText = web3.eth.getBalance(web3.eth.accounts[2].toString(10));
-
+function refreshBalances() {
+  account0Div.innerText = web3.eth.getBalance(accounts[0]);
+  account1Div.innerText = web3.eth.getBalance(accounts[1]);
+  account2Div.innerText = web3.eth.getBalance(accounts[2]);
 }
 
-function split() {
-  
-  // Get a Splitter instance
-  split = Splitter.deployed(web3.eth.accounts[1], web3.eth.accounts[2]);
+function splitWei(amount) {
 
-  // Copy in the nice-little function that will deal with the transaction delay  
+  split = Splitter.deployed();
+  console.log("Splitter Contract is Deployed.  Address = " + split.address);
+
+  split.split({ from: web3.eth.accounts[0], value: amount })
+    .then(function (txn) {
+      return web3.eth.getTransactionReceiptMined(txn);
+    })
+    .then(function (receipt) {
+      return  web3.eth.getBalance(accounts[0]);
+    })
+    .then(function (_balance) {
+      account0Div.innerText = _balance;
+      return  web3.eth.getBalance(accounts[1]);
+    })
+    .then(function (_balance) {
+      account1Div.innerText = _balance;
+      return  web3.eth.getBalance(accounts[2]);
+    })
+    .then(function (_balance) {
+      account2Div.innerText = _balance;
+    })
+    .catch(function (e) {
+      console.log('There was an error in Splitter.split() - ' + e.message);
+    });
+ }
+
+window.onload = function() {
+
+  //--------------------------------------
+  // Copy in the nice-little function that 
+  // will deal with the transaction delay
+  //--------------------------------------
   web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
       var transactionReceiptAsync;
       interval = interval ? interval : 500;
@@ -54,31 +83,10 @@ function split() {
       }
   };
 
+ account0Div = document.getElementById('account0');
+ account1Div = document.getElementById('account1');
+ account2Div = document.getElementById('account2');
   
-  // Update the UI with the starting balances and statii
-  refreshBalances(split.address);
-  setStatus('Calling Splitter.split() . . . ');
-  
-  // Do the split
-  split.split(web3.eth.accounts[1], web3.eth.accounts[2], { from: web3.eth.accounts[0], value: web3.toWei(1) })
-    .then(function (txn) {
-      setStatus("Checking Transaction " + txn + ' . . . ');
-      return web3.eth.getTransactionReceiptMined(txn);
-    })
-    .then(function (receipt) {
-      setStatus('Receipt received.  receipt.gasUsed = ' + receipt.gasUsed + '.  ');
-      refreshBalances(split.address);
-      setStatus('All Done');
-    })
-    .catch(function (e) {
-      setStatus('There was an error in Splitter.split() - ' + e.message);
-    });
-
- }
- 
-
-window.onload = function() {
-
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
       alert("There was an error fetching your accounts.");
@@ -89,8 +97,18 @@ window.onload = function() {
       alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
     }
-
-    split();
-
+    accounts = accs;
+    refreshBalances(accs);
   });
+  
+  document.getElementById('btn-split-10').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(10);
+  });  
+  
+  document.getElementById('btn-split-9').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(9);
+  });  
+
 }

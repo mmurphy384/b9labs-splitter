@@ -23,6 +23,11 @@ contract Splitter {
         _;
     }
 
+    function getAddress (uint _index) constant returns (address) {
+        if (_index > 2) throw;
+        return accounts[_index];
+    }
+
     function getBalance (uint _index) constant returns (uint) {
         return accounts[_index].balance;
     }
