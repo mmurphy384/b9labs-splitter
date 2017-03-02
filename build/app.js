@@ -44809,6 +44809,7 @@ var account0Div;
 var account1Div;
 var account2Div;
 var networkDiv;
+var transferDiv;
 var instance;
 
 function setStatus(message) {
@@ -44817,6 +44818,7 @@ function setStatus(message) {
 };
 
 function refreshBalances() {
+  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
   account0Div.innerText = web3.eth.getBalance(accounts[0]);
   account1Div.innerText = web3.eth.getBalance(accounts[1]);
   account2Div.innerText = web3.eth.getBalance(accounts[2]);
@@ -44854,6 +44856,26 @@ function splitWei(amount) {
 
 window.onload = function() {
 
+ //----------------------------------------------------------  
+ // Set global div variables
+ //----------------------------------------------------------  
+  accountSplitDiv = document.getElementById('account-split');
+  account0Div = document.getElementById('account-0');
+  account1Div = document.getElementById('account-1');
+  account2Div = document.getElementById('account-2');
+  transferDiv = document.getElementById('transfer-log');
+
+  document.getElementById('btn-split-10').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(10);
+  });  
+
+  document.getElementById('btn-split-9').addEventListener('click', function() {
+    setStatus("Starting Split");
+    splitWei(9);
+  });  
+
+
   //--------------------------------------
   // Copy in the nice-little function that 
   // will deal with the transaction delay
@@ -44889,39 +44911,27 @@ window.onload = function() {
       }
   };
 
- accountSplitDiv = document.getElementById('account-split');
- account0Div = document.getElementById('account-0');
- account1Div = document.getElementById('account-1');
- account2Div = document.getElementById('account-2');
- networkDiv = document.getElementById('network');
-  
+
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
-      alert("There was an error fetching your accounts.");
+      setStatus("There was an error fetching your accounts.");
       return;
     }
 
     if (accs.length == 0) {
-      alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
+      setStatus("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
     }
     accounts = accs;
-    refreshBalances(accs);
+    refreshBalances();
   });
 
 
   instance = Splitter.deployed();
-  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
-  logSplits();
-  document.getElementById('btn-split-10').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(10);
-  });  
   
-  document.getElementById('btn-split-9').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(9);
-  });  
+  logSplits();
+  logTransfers();
+
 
 }
 
@@ -44943,7 +44953,11 @@ function logTransfers() {
     .watch(function(e, value) {
       if (e)
         console.error(e);
-      else
-        setStatus(value.args.value + " wei sent from " + value.args.sender + " to " + value.args.receiver);
+      else {
+        var newItem = document.createElement("LI");     
+        var textnode = document.createTextNode(value.args.value + " wei sent from " + value.args.sender + " - to -  " + value.args.receiver);  // Create a text node
+        newItem.appendChild(textnode);        
+        transferDiv.insertBefore(newItem, transferDiv.childNodes[0]);  
+      }
     });
 }

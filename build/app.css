@@ -51,7 +51,10 @@ h3 {
   color: black;
 }
 
-
 #footer {
+  color: lightgray;
+}
+
+#transfer-log {
   color: lightgray;
 }
