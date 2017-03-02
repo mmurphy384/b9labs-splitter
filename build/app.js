@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1488336594287,
+    "updated_at": 1488419577158,
     "links": {},
-    "address": "0xd60f92569c102bbd04fb85cb62b1f3776536d4e0"
+    "address": "0x86623b4d4739d35ed8287db7cb168777e6480470"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488336594290,
+    "updated_at": 1488419577163,
     "links": {
-      "ConvertLib": "0xd60f92569c102bbd04fb85cb62b1f3776536d4e0"
+      "ConvertLib": "0x86623b4d4739d35ed8287db7cb168777e6480470"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1488336594292,
-    "address": "0x81c9638e74895af1ba99d4be60cf725ae5ab3eb2",
+    "updated_at": 1488419577166,
+    "address": "0x321493d42db758e7ee9bc0d62625e2eb54ecd36f",
     "links": {}
   }
 };
@@ -7603,9 +7603,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488336594298,
+    "updated_at": 1488419577172,
     "links": {},
-    "address": "0xffcf0586c44e8678f8f739f902c2071a97adda9f"
+    "address": "0x0d7cbe3a83d012aa2b0dc7ff93404615a516c714"
   }
 };
 
@@ -44797,14 +44797,18 @@ window.addEventListener('load', function() {
 //// END TRUFFLE BOOTSTRAP                                      
 
  
+
+ 
 //-------------------------------------------
 // Create a few global variables to make life
 // a little eaiser
 //-------------------------------------------
 var accounts = [];
+var accountSplitDiv;
 var account0Div;
 var account1Div;
 var account2Div;
+var networkDiv;
 var instance;
 
 function setStatus(message) {
@@ -44822,20 +44826,25 @@ function splitWei(amount) {
 
   instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
+      console.log("Transaction Hash Received (" + txn + ")");
       return web3.eth.getTransactionReceiptMined(txn);
     })
     .then(function (receipt) {
+      console.log("Transaction Mined (gasUsed = " + receipt.gasUsed + ")");
       return  web3.eth.getBalance(accounts[0]);
     })
     .then(function (_balance) {
+      console.log("Alice's balance was received (" + _balance + ")");
       account0Div.innerText = _balance;
       return  web3.eth.getBalance(accounts[1]);
     })
     .then(function (_balance) {
+      console.log("Bob's balance was received (" + _balance + ")");
       account1Div.innerText = _balance;
       return  web3.eth.getBalance(accounts[2]);
     })
     .then(function (_balance) {
+      console.log("Carol's balance was received (" + _balance + ") Address = " + accounts[2]);
       account2Div.innerText = _balance;
     })
     .catch(function (e) {
@@ -44880,9 +44889,11 @@ window.onload = function() {
       }
   };
 
- account0Div = document.getElementById('account0');
- account1Div = document.getElementById('account1');
- account2Div = document.getElementById('account2');
+ accountSplitDiv = document.getElementById('account-split');
+ account0Div = document.getElementById('account-0');
+ account1Div = document.getElementById('account-1');
+ account2Div = document.getElementById('account-2');
+ networkDiv = document.getElementById('network');
   
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
@@ -44900,6 +44911,7 @@ window.onload = function() {
 
 
   instance = Splitter.deployed();
+  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
   logSplits();
   document.getElementById('btn-split-10').addEventListener('click', function() {
     setStatus("Starting Split");

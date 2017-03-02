@@ -20,7 +20,8 @@ At this point, the contract is getting to a decent proto-type state
   * DONE! (well.  It could use a little bullet-proofing, but it works)
 6. Create a watcher/listener to show logs
   * DONE!
-6. More things to consider:
+7. Create a pull mechanism so that Alice can retrieve her share.
+8. More things to consider:
   * Review the fallback function.  Right now, it's only payable.
   * Still need to study re-entrance.
 

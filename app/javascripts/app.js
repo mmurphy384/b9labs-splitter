@@ -1,11 +1,15 @@
+ 
 //-------------------------------------------
 // Create a few global variables to make life
 // a little eaiser
 //-------------------------------------------
 var accounts = [];
+var accountSplitDiv;
 var account0Div;
 var account1Div;
 var account2Div;
+var networkDiv;
+var instance;
 
 function setStatus(message) {
   var status = document.getElementById("status");
@@ -20,25 +24,27 @@ function refreshBalances() {
 
 function splitWei(amount) {
 
-  split = Splitter.deployed();
-  console.log("Splitter Contract is Deployed.  Address = " + split.address);
-
-  split.split({ from: web3.eth.accounts[0], value: amount })
+  instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
+      console.log("Transaction Hash Received (" + txn + ")");
       return web3.eth.getTransactionReceiptMined(txn);
     })
     .then(function (receipt) {
+      console.log("Transaction Mined (gasUsed = " + receipt.gasUsed + ")");
       return  web3.eth.getBalance(accounts[0]);
     })
     .then(function (_balance) {
+      console.log("Alice's balance was received (" + _balance + ")");
       account0Div.innerText = _balance;
       return  web3.eth.getBalance(accounts[1]);
     })
     .then(function (_balance) {
+      console.log("Bob's balance was received (" + _balance + ")");
       account1Div.innerText = _balance;
       return  web3.eth.getBalance(accounts[2]);
     })
     .then(function (_balance) {
+      console.log("Carol's balance was received (" + _balance + ") Address = " + accounts[2]);
       account2Div.innerText = _balance;
     })
     .catch(function (e) {
@@ -83,9 +89,11 @@ window.onload = function() {
       }
   };
 
- account0Div = document.getElementById('account0');
- account1Div = document.getElementById('account1');
- account2Div = document.getElementById('account2');
+ accountSplitDiv = document.getElementById('account-split');
+ account0Div = document.getElementById('account-0');
+ account1Div = document.getElementById('account-1');
+ account2Div = document.getElementById('account-2');
+ networkDiv = document.getElementById('network');
   
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {
@@ -100,7 +108,11 @@ window.onload = function() {
     accounts = accs;
     refreshBalances(accs);
   });
-  
+
+
+  instance = Splitter.deployed();
+  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
+  logSplits();
   document.getElementById('btn-split-10').addEventListener('click', function() {
     setStatus("Starting Split");
     splitWei(10);
@@ -111,4 +123,27 @@ window.onload = function() {
     splitWei(9);
   });  
 
+}
+
+function logSplits() {
+  instance.onSplit()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
+      else
+        setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
+                    value.args.weiToAddr1 + " wei to Bob and " +
+                    value.args.weiToAddr2 + " wei to Carol");
+      refreshBalances();
+    });
+}
+
+function logTransfers() {
+  instance.onTransfer()
+    .watch(function(e, value) {
+      if (e)
+        console.error(e);
+      else
+        setStatus(value.args.value + " wei sent from " + value.args.sender + " to " + value.args.receiver);
+    });
 }

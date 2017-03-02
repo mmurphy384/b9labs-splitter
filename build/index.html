@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,18 +14,22 @@
   <p>This page exercises a very-simple function.  It sends ether to a Splitter.split contract sends half of the amount to Bob and the other half to Carol.</>
   <br>
   <br>
-  <div id='center-side'>
+  <div>
     <p>Status: <span id="status"></span></p>
     <button name='btn-split-10' id='btn-split-10'>Split 10 Wei</button>
     <button name='btn-split-09' id='btn-split-9'>Split 9 Wei</button>
   </div>
   <br>
-  <div id='left-side'>
+  <div>
 
-    <p>Account 1 (Alice) has <span id='account0'></span> wei</p>
-    <p>Account 2 (Bob) has <span id='account1'></span> wei</p>
-    <p>Account 3 (Carol) has <span id='account2'></span> wei</p>
+    <p>Splitter has <span id='account-split'></span> wei</p>
+    <p>Account 1 (Alice) has <span id='account-0'></span> wei</p>
+    <p>Account 2 (Bob) has <span id='account-1'></span> wei</p>
+    <p>Account 3 (Carol) has <span id='account-2'></span> wei</p>
   </div>
+  <br />
+  <br />
+  <p id='footer'>Powered by <span id='network'></span></p>
   
 </body>
 </html>
