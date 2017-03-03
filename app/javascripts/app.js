@@ -1,6 +1,3 @@
-
- 
-
  
 //-------------------------------------------
 // Create a few global variables to make life
@@ -29,28 +26,30 @@ function refreshBalances() {
 
 function splitWei(amount) {
 
-  instance.split({ from: web3.eth.accounts[0], value: amount })
+  return instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
       console.log("Transaction Hash Received (" + txn + ")");
       return web3.eth.getTransactionReceiptMined(txn);
     })
     .then(function (receipt) {
       console.log("Transaction Mined (gasUsed = " + receipt.gasUsed + ")");
-      return  web3.eth.getBalance(accounts[0]);
+      return Promise.all([
+          web3.eth.getBalance(accounts[0]),
+          web3.eth.getBalance(accounts[1]),
+          web3.eth.getBalance(accounts[2]),
+          web3.eth.getBalance(instance.address)
+      ]);
     })
-    .then(function (_balance) {
-      console.log("Alice's balance was received (" + _balance + ")");
-      account0Div.innerText = _balance;
-      return  web3.eth.getBalance(accounts[1]);
-    })
-    .then(function (_balance) {
-      console.log("Bob's balance was received (" + _balance + ")");
-      account1Div.innerText = _balance;
-      return  web3.eth.getBalance(accounts[2]);
-    })
-    .then(function (_balance) {
-      console.log("Carol's balance was received (" + _balance + ") Address = " + accounts[2]);
-      account2Div.innerText = _balance;
+    .then(function (_results) {
+      console.log("Alice's balance was received (" + _results[0] + ")");
+      console.log("Bob's balance was received (" + _results[1] + ")");
+      console.log("Carol's balance was received (" + _results[2] + ")");
+      console.log("Splitter Balance was recieved  (" + _results[3] + ")");
+      account0Div.innerText = _results[0];
+      account1Div.innerText = _results[1];
+      account2Div.innerText = _results[2];
+      splitterDiv.innerText = _results[3];
+      return  true
     })
     .catch(function (e) {
       console.log('There was an error in Splitter.split() - ' + e.message);
@@ -131,9 +130,7 @@ window.onload = function() {
 
 
   instance = Splitter.deployed();
-  
   logSplits();
-  logTransfers();
 
 
 }
@@ -148,19 +145,5 @@ function logSplits() {
                     value.args.weiToAddr1 + " wei to Bob and " +
                     value.args.weiToAddr2 + " wei to Carol");
       refreshBalances();
-    });
-}
-
-function logTransfers() {
-  instance.onTransfer()
-    .watch(function(e, value) {
-      if (e)
-        console.error(e);
-      else {
-        var newItem = document.createElement("LI");     
-        var textnode = document.createTextNode(value.args.value + " wei sent from " + value.args.sender + " - to -  " + value.args.receiver);  // Create a text node
-        newItem.appendChild(textnode);        
-        transferDiv.insertBefore(newItem, transferDiv.childNodes[0]);  
-      }
     });
 }

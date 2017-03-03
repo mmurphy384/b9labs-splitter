@@ -6,8 +6,7 @@ contract Splitter {
     bool isActive;
     mapping (uint => address) accounts;
 
-    event onTransfer(address sender, address receiver, uint value, uint timeStamp); 
-    event onSplit(address sender, uint weiTotal, uint weiToAddr1, uint weiToAddr2, uint timestamp);
+    event onSplit(address indexed sender, uint weiTotal, uint weiToAddress1, uint weiToAddress2, address indexed Addr1, address indexed Addr2);
 
     modifier isOwner () {
         if (msg.sender != owner) {
@@ -23,15 +22,6 @@ contract Splitter {
         _;
     }
 
-    function getAddress (uint _index) constant returns (address) {
-        if (_index > 2) throw;
-        return accounts[_index];
-    }
-
-    function getBalance (uint _index) constant returns (uint) {
-        return accounts[_index].balance;
-    }
-
     function Splitter (address _address1, address _address2)  {
         owner = msg.sender;
         isActive = true;
@@ -40,26 +30,25 @@ contract Splitter {
         accounts[2] = _address2;
     }
 
-    function split() payable  {
+    function split() isOwner payable  {
         
         if (!isActive) throw;
 
-        var half = msg.value / 2;
-        var otherhalf = msg.value - half; 
+        uint half = msg.value / 2;
+        uint otherhalf = msg.value - half; 
 
         if (!accounts[1].send(half)) throw;
-        onTransfer(msg.sender,accounts[1],half, now);
         if (!accounts[2].send(otherhalf)) throw;
-        onTransfer(msg.sender,accounts[2],otherhalf, now);
-        onSplit(msg.sender, msg.value, half, otherhalf, now);
+
+        onSplit(msg.sender, msg.value, half, otherhalf, accounts[1], accounts[2]);
     }
 
-    function killMe() isOwner() returns (bool) {
+    function killMe() isOwner returns (bool) {
         isActive = false;
         return true;
     }
 
-    function () payable {
+    function () isOwner payable {
 
     }
 }

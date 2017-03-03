@@ -35,44 +35,38 @@ contract('Splitter', function (accounts) {
 	describe("Splitter Tests", function () {
 		
 		var sendAmount = 20;
-		var half = (sendAmount / 2);
-		var otherHalf = (sendAmount - half);
-		var aliceAddress = accounts[0];
-		var bobAddress = accounts[1];
-		var carolAddress = accounts[2];
+		var half = 10;
+		var otherHalf = 10;
 		var bobStartingBalance = 0;
 		var carolStartingBalance = 0;
 
-		it("should make sure we can retrieve bob and carols balances", function () {
-			var instance = Splitter.deployed();
-			return instance.getBalance.call(1)
-				.then(function (_result) {
-					bobStartingBalance = _result.toNumber();
-					return instance.getBalance.call(2);
-				}).then(function (_result) {
-					carolStartingBalance = _result.toNumber();
-					assert.isTrue(bobStartingBalance >= 100000000000000000000, "His balance is actually " + _result.toNumber());
-					assert.isTrue(carolStartingBalance >= 100000000000000000000, "Her balance is actually " + _result.toNumber());
-				});
-		});
-
 		it("should verify that the split will send half to bob and half to carol.", function () {
 			var instance = Splitter.deployed();
-			return instance.split({ from: accounts[0], value: sendAmount})
-				.then(function (txn) {
-					return web3.eth.getTransactionReceiptMined(txn);
-				}).then(function (_result) {
-					assert.equal(1, 1, "Transaction successfully mined");
-					return instance.getBalance.call(1);
-				}).then(function (_result) {
-					var expected = (bobStartingBalance + half);
-					assert.equal(expected, _result.toNumber(), "bob received half");
-					return instance.getBalance.call(2);
-				}).then(function (_result) {
-					var expected = (carolStartingBalance + otherHalf);
-					assert.equal(expected, _result.toNumber(), "carol received half");
-				});
+			return Promise.all([
+				web3.eth.getBalance(accounts[0]),
+				web3.eth.getBalance(accounts[1]),
+				web3.eth.getBalance(accounts[2])
+			]).then(function (results) { 
+				bobStartingBalance = results[1];
+				carolStartingBalance = results[2];
+				return instance.split({ from: accounts[0], value: sendAmount, gas: 3000000 })
+			}).then(function (txn) {
+				return web3.eth.getTransactionReceiptMined(txn);
+			}).then(function (_result) {
+				assert.isBelow(_result.gasUsed, 3000000, "Transaction successfully mined");
+				return Promise.all([
+					web3.eth.getBalance(accounts[0]),
+					web3.eth.getBalance(accounts[1]),
+					web3.eth.getBalance(accounts[2])
+				]);
+			}).then(function (results) {
+				var expected1 = (bobStartingBalance + half);
+				var expected2 = (carolStartingBalance + otherHalf);
+				assert.equal(results[1].toNumber(), expected1, "bob received half");
+				assert.equal(results[2].toNumber(), expected2, "carol received half");
+				}).catch(function (e) { 
+					console.log("There was an error: " + e);
+				})
 		});
 	});
 });
-

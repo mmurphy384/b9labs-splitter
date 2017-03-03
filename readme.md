@@ -3,8 +3,9 @@
 At this point, the contract is getting to a decent proto-type state
 
 ##Latest Revision:  
-  * 2/21/2017 - 03:08 GMT - Applied Xaviers recommendations in the tests and contract code.
+  * 3/02/2017 - 03:44 GMT - Applied round 2 recommendations from Xavier.  Split works. Test works.  Events works, UI works.
   * 2/28/2017 - 03:44 GMT - Created a working UI.  Split works.  Balances refresh.
+  * 2/21/2017 - 03:08 GMT - Applied Xaviers recommendations in the tests and contract code.
 
 ##To Do List:
 
