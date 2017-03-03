@@ -44830,7 +44830,7 @@ function splitWei(amount) {
       account0Div.innerText = _results[0];
       account1Div.innerText = _results[1];
       account2Div.innerText = _results[2];
-      splitterDiv.innerText = _results[3];
+      accountSplitDiv.innerText = _results[3];
       return  true
     })
     .catch(function (e) {
