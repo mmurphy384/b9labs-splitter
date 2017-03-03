@@ -350,24 +350,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_index",
-            "type": "uint256"
-          }
-        ],
-        "name": "getBalance",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
         "constant": false,
         "inputs": [],
         "name": "killMe",
@@ -375,24 +357,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
           {
             "name": "",
             "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_index",
-            "type": "uint256"
-          }
-        ],
-        "name": "getAddress",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
           }
         ],
         "payable": false,
@@ -428,34 +392,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "anonymous": false,
         "inputs": [
           {
-            "indexed": false,
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "value",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "timeStamp",
-            "type": "uint256"
-          }
-        ],
-        "name": "onTransfer",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
+            "indexed": true,
             "name": "sender",
             "type": "address"
           },
@@ -466,25 +403,30 @@ var SolidityEvent = require("web3/lib/web3/event.js");
           },
           {
             "indexed": false,
-            "name": "weiToAddr1",
+            "name": "weiToAddress1",
             "type": "uint256"
           },
           {
             "indexed": false,
-            "name": "weiToAddr2",
+            "name": "weiToAddress2",
             "type": "uint256"
           },
           {
-            "indexed": false,
-            "name": "timestamp",
-            "type": "uint256"
+            "indexed": true,
+            "name": "Addr1",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "Addr2",
+            "type": "address"
           }
         ],
         "name": "onSplit",
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405234610000576040516040806104e08339810160405280516020909101515b6000805460a060020a60ff0219600160a060020a03338116600160a060020a03199384161791909116740100000000000000000000000000000000000000001780845560016020527fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841617905560029092527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928416929091169190911790555b50505b6103d48061010c6000396000f300606060405236156100465763ffffffff60e060020a6000350416631e010439811461004f578063b603cd8014610071578063b93f9b0a14610092578063f7654176146100be575b61004d5b5b565b005b346100005761005f6004356100c8565b60408051918252519081900360200190f35b346100005761007e6100e7565b604080519115158252519081900360200190f35b34610000576100a2600435610129565b60408051600160a060020a039092168252519081900360200190f35b61004d610158565b005b600081815260016020526040902054600160a060020a0316315b919050565b6000805433600160a060020a0390811691161461010357610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b6000600282111561013957610000565b50600081815260016020526040902054600160a060020a03165b919050565b60008054819074010000000000000000000000000000000000000000900460ff16151561018457610000565b5050600160008181526020919091527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f54604051600234908104939084900392600160a060020a0316916108fc85150291859190818181858888f1935050505015156101ef57610000565b6001600081905260209081527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f5460408051600160a060020a0333811682529092169282019290925280820184905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a16002600090815260016020527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f54604051600160a060020a039091169183156108fc02918491818181858888f1935050505015156102cd57610000565b6002600052600160209081527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f5460408051600160a060020a0333811682529092169282019290925280820183905242606082015290517f91c7d71a3ae3fb7cf61e00517bf4868e9e23d0bace5e304cbc3b68de5d85350e9181900360800190a160408051600160a060020a03331681523460208201528082018490526060810183905242608082015290517fb7a9df5e5cf227aa5636b1d7846444ce7ffea6e0e145e6523ecc14ef9d9b663e9181900360a00190a15b50505600a165627a7a72305820f0770b165f2b337c84f8c98d04ee64e2064f044b0193bbcd71ea61ecf8a6b4500029",
+    "unlinked_binary": "0x606060405234610000576040516040806103b48339810160405280516020909101515b6000805460a060020a60ff0219600160a060020a03338116600160a060020a03199384161791909116740100000000000000000000000000000000000000001780845560016020527fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841617905560029092527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928416929091169190911790555b50505b6102a88061010c6000396000f300606060405236156100305763ffffffff60e060020a600035041663b603cd808114610055578063f765417614610076575b6100535b60005433600160a060020a0390811691161461004f57610000565b5b5b565b005b3461000057610062610080565b604080519115158252519081900360200190f35b6100536100c2565b005b6000805433600160a060020a0390811691161461009c57610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b60008054819033600160a060020a039081169116146100e057610000565b60005474010000000000000000000000000000000000000000900460ff16151561010957610000565b5050600160008181526020919091527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f54604051600234908104939084900392600160a060020a0316916108fc85150291859190818181858888f19350505050151561017457610000565b6002600090815260016020527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f54604051600160a060020a039091169183156108fc02918491818181858888f1935050505015156101d157610000565b600160208181527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f546000929092527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f546040805134815292830186905282810185905251600160a060020a03938416939182169233909216917f9a4077979b1320e10de05d6de494c281b164e023c7bf20311bb5f5e792499a1b919081900360600190a45b5b50505600a165627a7a72305820a107c5e77b50500249889033907d2b902d523dbc7f83125b8003a28482f145700029",
     "events": {
       "0x719e07d6e03b88920bc0dde696425d7a6276b6a218d46acd15abeb96205a094a": {
         "anonymous": false,
@@ -630,11 +572,48 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "onSplit",
         "type": "event"
+      },
+      "0x9a4077979b1320e10de05d6de494c281b164e023c7bf20311bb5f5e792499a1b": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "weiToAddress1",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "weiToAddress2",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "name": "Addr1",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "Addr2",
+            "type": "address"
+          }
+        ],
+        "name": "onSplit",
+        "type": "event"
       }
     },
-    "updated_at": 1488419577172,
+    "updated_at": 1488513454109,
     "links": {},
-    "address": "0x0d7cbe3a83d012aa2b0dc7ff93404615a516c714"
+    "address": "0x8f5f8aaaad388078695ce8507e1b731607ea59c2"
   }
 };
 
