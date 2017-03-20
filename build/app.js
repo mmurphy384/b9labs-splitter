@@ -5698,9 +5698,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x6060604052346000575b6076806100176000396000f300606060405263ffffffff60e060020a60003504166396e4ee3d81146022575b6000565b602e6004356024356040565b60408051918252519081900360200190f35b8181025b929150505600a165627a7a7230582071b45db3dccbd6c528be82d3a0ec96095858919485b2748be2b7c328f75808760029",
     "events": {},
-    "updated_at": 1488513118325,
+    "updated_at": 1489984091741,
     "links": {},
-    "address": "0x7a0355a5c41df2523044228ac5ee13246afa9dcd"
+    "address": "0x7b1ecc811b56df51fb36a3958f7484ebf2789b4e"
   }
 };
 
@@ -6292,9 +6292,9 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1488513118330,
+    "updated_at": 1489984091744,
     "links": {
-      "ConvertLib": "0x7a0355a5c41df2523044228ac5ee13246afa9dcd"
+      "ConvertLib": "0x7b1ecc811b56df51fb36a3958f7484ebf2789b4e"
     },
     "address": "0xfc2e100c49c8321110ad3ba29ac2c14ca48ca903"
   }
@@ -6837,8 +6837,8 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03161790555b5b610190806100366000396000f300606060405263ffffffff60e060020a6000350416630900f0108114610045578063445df0ac146100605780638da5cb5b1461007f578063fdacd576146100a8575b610000565b346100005761005e600160a060020a03600435166100ba565b005b346100005761006d61012d565b60408051918252519081900360200190f35b346100005761008c610133565b60408051600160a060020a039092168252519081900360200190f35b346100005761005e600435610142565b005b6000805433600160a060020a03908116911614156101275781905080600160a060020a031663fdacd5766001546040518263ffffffff1660e060020a02815260040180828152602001915050600060405180830381600087803b156100005760325a03f115610000575050505b5b5b5050565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561015f5760018190555b5b5b505600a165627a7a723058209471d68425a842d8a14302602263ff9d5ceab5284e4cb6cc461baeec5264717d0029",
     "events": {},
-    "updated_at": 1488513118332,
-    "address": "0x4d584e9b97657e8c3136965a24978d482f35cf7e",
+    "updated_at": 1489984091747,
+    "address": "0x40563854c4616e8a700963791e753796ce4f906f",
     "links": {}
   }
 };
@@ -7323,7 +7323,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
       {
         "constant": false,
         "inputs": [],
-        "name": "killMe",
+        "name": "resurrectMe",
         "outputs": [
           {
             "name": "",
@@ -7336,13 +7336,61 @@ var SolidityEvent = require("web3/lib/web3/event.js");
       {
         "constant": false,
         "inputs": [],
-        "name": "split",
+        "name": "withdrawPendingFunds",
         "outputs": [],
         "payable": true,
         "type": "function"
       },
       {
+        "constant": false,
+        "inputs": [],
+        "name": "killMe",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": true,
         "inputs": [
+          {
+            "name": "_address",
+            "type": "address"
+          }
+        ],
+        "name": "getPendingFundsAmount",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [],
+        "name": "split",
+        "outputs": [
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "payable": true,
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "name": "_address0",
+            "type": "address"
+          },
           {
             "name": "_address1",
             "type": "address"
@@ -7395,9 +7443,48 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "onSplit",
         "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "isProcessed",
+            "type": "bool"
+          },
+          {
+            "indexed": true,
+            "name": "weiToWhom",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          }
+        ],
+        "name": "onWithdrawPendingFunds",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "fromWhom",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnFallbackReceipt",
+        "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405234610000576040516040806103b48339810160405280516020909101515b6000805460a060020a60ff0219600160a060020a03338116600160a060020a03199384161791909116740100000000000000000000000000000000000000001780845560016020527fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841617905560029092527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928416929091169190911790555b50505b6102a88061010c6000396000f300606060405236156100305763ffffffff60e060020a600035041663b603cd808114610055578063f765417614610076575b6100535b60005433600160a060020a0390811691161461004f57610000565b5b5b565b005b3461000057610062610080565b604080519115158252519081900360200190f35b6100536100c2565b005b6000805433600160a060020a0390811691161461009c57610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b60008054819033600160a060020a039081169116146100e057610000565b60005474010000000000000000000000000000000000000000900460ff16151561010957610000565b5050600160008181526020919091527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f54604051600234908104939084900392600160a060020a0316916108fc85150291859190818181858888f19350505050151561017457610000565b6002600090815260016020527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f54604051600160a060020a039091169183156108fc02918491818181858888f1935050505015156101d157610000565b600160208181527fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f546000929092527fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f546040805134815292830186905282810185905251600160a060020a03938416939182169233909216917f9a4077979b1320e10de05d6de494c281b164e023c7bf20311bb5f5e792499a1b919081900360600190a45b5b50505600a165627a7a723058203a2f7d67144d61d6c3af052cd4c0be0f4d4da18d98aad9f8ba356c3de8db67a10029",
+    "unlinked_binary": "0x6060604052346100005760405160608061064c8339810160409081528151602083015191909201515b60008054600160a060020a03808616600160a060020a031960a060020a60ff021990931674010000000000000000000000000000000000000000178316178084557fa6eef7e35abe7026729641147f7915573c7e97b47efa546f5f6e3230263bcb49805484169183169190911790557fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f805486831690841681179091557fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054928616929093168217909255908252600260205260408083208390559082528120555b5050505b61052e8061011e6000396000f300606060405236156100515763ffffffff60e060020a600035041663050d631381146100a75780630a7636ac146100c8578063b603cd80146100d2578063f1d0ed25146100f3578063f76541761461011e575b6100a55b60003411156100a25760408051600160a060020a033316815234602082015281517f39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da929181900390910190a15b5b565b005b34610000576100b46101a6565b604080519115158252519081900360200190f35b6100a56101ee565b005b34610000576100b46102bf565b604080519115158252519081900360200190f35b346100005761010c600160a060020a0360043516610301565b60408051918252519081900360200190f35b610126610320565b60408051602080825283518183015283519192839290830191850190808383821561016c575b80518252602083111561016c57601f19909201916020918201910161014c565b505050905090810190601f1680156101985780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6000805433600160a060020a039081169116146101c257610000565b506000805474ff0000000000000000000000000000000000000000191660a060020a17905560015b5b90565b33600160a060020a03811660009081526002602052604081205490919082908181111561027257600160a060020a0383166000818152600260205260408082208290555183156108fc0291849190818181858888f19350505050156102565760019350610272565b600160a060020a03831660009081526002602052604090208190555b5b604080518515158152602081018390528151600160a060020a038616927fbe0e916d347e44dda6df0702c29f7588215390c59fa97c0c6a6e5a649cab0d98928290030190a25b50505050565b6000805433600160a060020a039081169116146102db57610000565b506000805474ff00000000000000000000000000000000000000001916905560015b5b90565b600160a060020a0381166000908152600260205260409020545b919050565b604080516020810190915260008082528054819033600160a060020a0390811691161461034c57610000565b3433600160a060020a03163110156103995760408051808201909152600a81527f4c6f7742616c616e636500000000000000000000000000000000000000000000602082015292506104fc565b60005460a060020a900460ff1615156103e75760408051808201909152600881527f496e616374697665000000000000000000000000000000000000000000000000602082015292506104fc565b50507fcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f8054600160a060020a0390811660009081526002602081815260408084208054349485049081019091557fd9d16d34ffb15ba3a3d852f0d403e2ce1d691fb54de27ac87cd2f993f3ec330f8054871686528286208054838703908101909155600180865291549190965296548251948552928401819052838201859052905190959394938416939182169233909216917f9a4077979b1320e10de05d6de494c281b164e023c7bf20311bb5f5e792499a1b919081900360600190a460408051808201909152600281527f6f6b000000000000000000000000000000000000000000000000000000000000602082015292505b5b5050905600a165627a7a72305820b6dfb977bfc0079455f237aeeb699dc397ac68ef3bf0494e8521de82abb078af0029",
     "events": {
       "0x719e07d6e03b88920bc0dde696425d7a6276b6a218d46acd15abeb96205a094a": {
         "anonymous": false,
@@ -7580,11 +7667,67 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         ],
         "name": "onSplit",
         "type": "event"
+      },
+      "0xef6b270428dc9c5099dde1066d60c1cd85217ba6c53259e965f100c5cc7b748c": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "name": "weiToWhom",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          }
+        ],
+        "name": "onWithdrawPendingFunds",
+        "type": "event"
+      },
+      "0xbe0e916d347e44dda6df0702c29f7588215390c59fa97c0c6a6e5a649cab0d98": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "isProcessed",
+            "type": "bool"
+          },
+          {
+            "indexed": true,
+            "name": "weiToWhom",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          }
+        ],
+        "name": "onWithdrawPendingFunds",
+        "type": "event"
+      },
+      "0x39d1569f1d1e846d090c1524d9415565ef53c90542c98a778db4c731df56e7da": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "fromWhom",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "weiTotal",
+            "type": "uint256"
+          }
+        ],
+        "name": "OnFallbackReceipt",
+        "type": "event"
       }
     },
-    "updated_at": 1488513118336,
+    "updated_at": 1489984091751,
     "links": {},
-    "address": "0xa7798bd5234d2010b7d9960c7fb779d2de99402c"
+    "address": "0x1cb56696bedf300e867b82d8c9188a7e38f2170f"
   }
 };
 
@@ -44775,39 +44918,72 @@ window.addEventListener('load', function() {
 
 //// END TRUFFLE BOOTSTRAP                                      
 
- 
 
 
- 
-
- 
 //-------------------------------------------
 // Create a few global variables to make life
 // a little eaiser
 //-------------------------------------------
 var accounts = [];
-var accountSplitDiv;
-var account0Div;
-var account1Div;
-var account2Div;
-var networkDiv;
-var transferDiv;
 var instance;
 
+//--------------
+// GUI functions
+//--------------
 function setStatus(message) {
   var status = document.getElementById("status");
   status.innerText = message;
-};
-
-function refreshBalances() {
-  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
-  account0Div.innerText = web3.eth.getBalance(accounts[0]);
-  account1Div.innerText = web3.eth.getBalance(accounts[1]);
-  account2Div.innerText = web3.eth.getBalance(accounts[2]);
 }
 
-function splitWei(amount) {
+function updateInnerText(id, text) { 
+  document.getElementById(id).innerText = text;
+}
 
+//----------------------------
+// Set listeners
+//----------------------------
+function initElements() {
+    document.getElementById('btn-split-10').addEventListener('click', function() {
+      setStatus("Starting Split");
+      splitWei(10);
+    });  
+    document.getElementById('btn-split-9').addEventListener('click', function() {
+      setStatus("Starting Split");
+      splitWei(9);
+    });  
+    document.getElementById('btn-withdraw-1').addEventListener('click', function() {
+      setStatus("Starting withdrawal for Bob");
+      withdrawWei(1);
+    });  
+    document.getElementById('btn-withdraw-2').addEventListener('click', function() {
+      setStatus("Starting withdraw for Carol");
+      withdrawWei(2);
+    });  
+ }
+
+//---------------------------------------------------------
+// Splitter function to refresh balances and logWithdrawals
+//---------------------------------------------------------
+function refreshBalances() {
+  updateInnerText('account-split', web3.eth.getBalance(instance.address));
+  updateInnerText('account-0',web3.eth.getBalance(accounts[0]));
+  updateInnerText('account-1',web3.eth.getBalance(accounts[1]));
+  updateInnerText('account-2',web3.eth.getBalance(accounts[2]));
+	return Promise.all([
+					instance.getPendingFundsAmount(accounts[1]),
+					instance.getPendingFundsAmount(accounts[2])
+  ]).then(function (results) {
+    updateInnerText('btn-withdraw-1', results[0].toNumber());
+    updateInnerText('btn-withdraw-2', results[1].toNumber());
+  }).catch(function (e) {
+    console.log("There was an error: " + e);
+  });
+}
+
+//---------------------------------------------------
+// Splitter function to split the wei in the contract
+//---------------------------------------------------
+function splitWei(amount) {
   return instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
       console.log("Transaction Hash Received (" + txn + ")");
@@ -44815,54 +44991,44 @@ function splitWei(amount) {
     })
     .then(function (receipt) {
       console.log("Transaction Mined (gasUsed = " + receipt.gasUsed + ")");
-      return Promise.all([
-          web3.eth.getBalance(accounts[0]),
-          web3.eth.getBalance(accounts[1]),
-          web3.eth.getBalance(accounts[2]),
-          web3.eth.getBalance(instance.address)
-      ]);
-    })
-    .then(function (_results) {
-      console.log("Alice's balance was received (" + _results[0] + ")");
-      console.log("Bob's balance was received (" + _results[1] + ")");
-      console.log("Carol's balance was received (" + _results[2] + ")");
-      console.log("Splitter Balance was recieved  (" + _results[3] + ")");
-      account0Div.innerText = _results[0];
-      account1Div.innerText = _results[1];
-      account2Div.innerText = _results[2];
-      accountSplitDiv.innerText = _results[3];
-      return  true
     })
     .catch(function (e) {
       console.log('There was an error in Splitter.split() - ' + e.message);
     });
+   refreshBalances();
  }
 
+//----------------------------------------------------------
+// Splitter Function to withdraw wei to a particular account
+//----------------------------------------------------------
+function withdrawWei(accountIndex) {
+  return instance.withdrawPendingFunds({from:accounts[accountIndex]})
+    .then(function (txn) {
+      console.log("Withdrawal Hash Received (" + txn + ")");
+      return web3.eth.getTransactionReceiptMined(txn);
+    })
+    .then(function (receipt) {
+      console.log("Withdrawal Processed. gasUsed = " + receipt.gasUsed);
+    })
+    .catch(function (e) {
+      console.log('There was an error in Splitter.withdrawWei() - ' + e.message);
+    });
+  refreshBalances();
+ }
+
+
+//-----------------------------
+// Let's make the magic happen
+//-----------------------------
 window.onload = function() {
+  initElements();
+  instance = Splitter.deployed();
 
- //----------------------------------------------------------  
- // Set global div variables
- //----------------------------------------------------------  
-  accountSplitDiv = document.getElementById('account-split');
-  account0Div = document.getElementById('account-0');
-  account1Div = document.getElementById('account-1');
-  account2Div = document.getElementById('account-2');
-  transferDiv = document.getElementById('transfer-log');
-
-  document.getElementById('btn-split-10').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(10);
-  });  
-
-  document.getElementById('btn-split-9').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(9);
-  });  
-
-  //--------------------------------------
+  //---------------------------------------
   // Copy in the nice-little function that 
   // will deal with the transaction delay
-  //--------------------------------------
+  // TO DO: Find a better place to put this
+  //---------------------------------------
   web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
       var transactionReceiptAsync;
       interval = interval ? interval : 500;
@@ -44894,12 +45060,15 @@ window.onload = function() {
       }
   };
 
+  //---------------------------------------------
+  // Load the available accounts and set balances
+  //---------------------------------------------
   web3.eth.getAccounts(function(err, accs) {
+  
     if (err != null) {
       setStatus("There was an error fetching your accounts.");
       return;
     }
-
     if (accs.length == 0) {
       setStatus("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
@@ -44908,21 +45077,33 @@ window.onload = function() {
     refreshBalances();
   });
 
-  instance = Splitter.deployed();
+  //----------------------------
+  // Loggers
+  //----------------------------
   logSplits();
-
+  logWithdrawals();
 }
 
 function logSplits() {
   instance.onSplit()
-    .watch(function(e, value) {
-      if (e)
-        console.error(e);
-      else
-        setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
-                    value.args.weiToAddr1 + " wei to Bob and " +
-                    value.args.weiToAddr2 + " wei to Carol");
-      refreshBalances();
-    });
+  .watch(function(e, value) {
+    if (e)
+      console.error(e);
+    else
+      setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
+                  value.args.weiToAddress1 + " wei to Bob and " +
+                  value.args.weiToAddress2 + " wei to Carol");
+    refreshBalances();
+  });
 }
 
+function logWithdrawals() {
+  instance.onWithdrawPendingFunds()
+  .watch(function(e, value) {
+    if (e)
+      console.error(e);
+    else
+      setStatus(value.args.weiTotal + " wei withdrawn to " + value.args.weiToWhom + ".");
+    refreshBalances();
+  });
+}
