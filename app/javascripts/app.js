@@ -1,31 +1,69 @@
- 
+
+
 //-------------------------------------------
 // Create a few global variables to make life
 // a little eaiser
 //-------------------------------------------
 var accounts = [];
-var accountSplitDiv;
-var account0Div;
-var account1Div;
-var account2Div;
-var networkDiv;
-var transferDiv;
 var instance;
 
+//--------------
+// GUI functions
+//--------------
 function setStatus(message) {
   var status = document.getElementById("status");
   status.innerText = message;
-};
-
-function refreshBalances() {
-  accountSplitDiv.innerText = web3.eth.getBalance(instance.address);  
-  account0Div.innerText = web3.eth.getBalance(accounts[0]);
-  account1Div.innerText = web3.eth.getBalance(accounts[1]);
-  account2Div.innerText = web3.eth.getBalance(accounts[2]);
 }
 
-function splitWei(amount) {
+function updateInnerText(id, text) { 
+  document.getElementById(id).innerText = text;
+}
 
+//----------------------------
+// Set listeners
+//----------------------------
+function initElements() {
+    document.getElementById('btn-split-10').addEventListener('click', function() {
+      setStatus("Starting Split");
+      splitWei(10);
+    });  
+    document.getElementById('btn-split-9').addEventListener('click', function() {
+      setStatus("Starting Split");
+      splitWei(9);
+    });  
+    document.getElementById('btn-withdraw-1').addEventListener('click', function() {
+      setStatus("Starting withdrawal for Bob");
+      withdrawWei(1);
+    });  
+    document.getElementById('btn-withdraw-2').addEventListener('click', function() {
+      setStatus("Starting withdraw for Carol");
+      withdrawWei(2);
+    });  
+ }
+
+//---------------------------------------------------------
+// Splitter function to refresh balances and logWithdrawals
+//---------------------------------------------------------
+function refreshBalances() {
+  updateInnerText('account-split', web3.eth.getBalance(instance.address));
+  updateInnerText('account-0',web3.eth.getBalance(accounts[0]));
+  updateInnerText('account-1',web3.eth.getBalance(accounts[1]));
+  updateInnerText('account-2',web3.eth.getBalance(accounts[2]));
+	return Promise.all([
+					instance.getPendingFundsAmount(accounts[1]),
+					instance.getPendingFundsAmount(accounts[2])
+  ]).then(function (results) {
+    updateInnerText('btn-withdraw-1', results[0].toNumber());
+    updateInnerText('btn-withdraw-2', results[1].toNumber());
+  }).catch(function (e) {
+    console.log("There was an error: " + e);
+  });
+}
+
+//---------------------------------------------------
+// Splitter function to split the wei in the contract
+//---------------------------------------------------
+function splitWei(amount) {
   return instance.split({ from: web3.eth.accounts[0], value: amount })
     .then(function (txn) {
       console.log("Transaction Hash Received (" + txn + ")");
@@ -33,55 +71,44 @@ function splitWei(amount) {
     })
     .then(function (receipt) {
       console.log("Transaction Mined (gasUsed = " + receipt.gasUsed + ")");
-      return Promise.all([
-          web3.eth.getBalance(accounts[0]),
-          web3.eth.getBalance(accounts[1]),
-          web3.eth.getBalance(accounts[2]),
-          web3.eth.getBalance(instance.address)
-      ]);
-    })
-    .then(function (_results) {
-      console.log("Alice's balance was received (" + _results[0] + ")");
-      console.log("Bob's balance was received (" + _results[1] + ")");
-      console.log("Carol's balance was received (" + _results[2] + ")");
-      console.log("Splitter Balance was recieved  (" + _results[3] + ")");
-      account0Div.innerText = _results[0];
-      account1Div.innerText = _results[1];
-      account2Div.innerText = _results[2];
-      accountSplitDiv.innerText = _results[3];
-      return  true
     })
     .catch(function (e) {
       console.log('There was an error in Splitter.split() - ' + e.message);
     });
+   refreshBalances();
  }
 
+//----------------------------------------------------------
+// Splitter Function to withdraw wei to a particular account
+//----------------------------------------------------------
+function withdrawWei(accountIndex) {
+  return instance.withdrawPendingFunds({from:accounts[accountIndex]})
+    .then(function (txn) {
+      console.log("Withdrawal Hash Received (" + txn + ")");
+      return web3.eth.getTransactionReceiptMined(txn);
+    })
+    .then(function (receipt) {
+      console.log("Withdrawal Processed. Receipt = " + receipt.toString());
+    })
+    .catch(function (e) {
+      console.log('There was an error in Splitter.withdrawWei() - ' + e.message);
+    });
+  refreshBalances();
+ }
+
+
+//-----------------------------
+// Let's make the magic happen
+//-----------------------------
 window.onload = function() {
+  initElements();
+  instance = Splitter.deployed();
 
- //----------------------------------------------------------  
- // Set global div variables
- //----------------------------------------------------------  
-  accountSplitDiv = document.getElementById('account-split');
-  account0Div = document.getElementById('account-0');
-  account1Div = document.getElementById('account-1');
-  account2Div = document.getElementById('account-2');
-  transferDiv = document.getElementById('transfer-log');
-
-  document.getElementById('btn-split-10').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(10);
-  });  
-
-  document.getElementById('btn-split-9').addEventListener('click', function() {
-    setStatus("Starting Split");
-    splitWei(9);
-  });  
-
-
-  //--------------------------------------
+  //---------------------------------------
   // Copy in the nice-little function that 
   // will deal with the transaction delay
-  //--------------------------------------
+  // TO DO: Find a better place to put this
+  //---------------------------------------
   web3.eth.getTransactionReceiptMined = function (txnHash, interval) {
       var transactionReceiptAsync;
       interval = interval ? interval : 500;
@@ -113,13 +140,15 @@ window.onload = function() {
       }
   };
 
-
+  //---------------------------------------------
+  // Load the available accounts and set balances
+  //---------------------------------------------
   web3.eth.getAccounts(function(err, accs) {
+  
     if (err != null) {
       setStatus("There was an error fetching your accounts.");
       return;
     }
-
     if (accs.length == 0) {
       setStatus("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
@@ -128,22 +157,33 @@ window.onload = function() {
     refreshBalances();
   });
 
-
-  instance = Splitter.deployed();
+  //----------------------------
+  // Loggers
+  //----------------------------
   logSplits();
-
-
+  logWithdrawals();
 }
 
 function logSplits() {
   instance.onSplit()
-    .watch(function(e, value) {
-      if (e)
-        console.error(e);
-      else
-        setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
-                    value.args.weiToAddr1 + " wei to Bob and " +
-                    value.args.weiToAddr2 + " wei to Carol");
-      refreshBalances();
-    });
+  .watch(function(e, value) {
+    if (e)
+      console.error(e);
+    else
+      setStatus(value.args.weiTotal + " wei sent from " + value.args.sender + " to split(). " +
+                  value.args.weiToAddress1 + " wei to Bob and " +
+                  value.args.weiToAddress2 + " wei to Carol");
+    refreshBalances();
+  });
+}
+
+function logWithdrawals() {
+  instance.onWithdrawPendingFunds()
+  .watch(function(e, value) {
+    if (e)
+      console.error(e);
+    else
+      setStatus(value.args.weiTotal + " wei withdrawn to " + value.args.weiToWhom + ".");
+    refreshBalances();
+  });
 }
