@@ -24,6 +24,6 @@ At this point, the contract is getting to a decent proto-type state
   * DONE!
 7. Create a pull mechanism so that Alice can retrieve her share.
   * DONE!
-8. More things to consider:
-  * DONE FOR NOW!
+8. Create a better UI to reflect the Alice, Bob, Carol experience:
+  * DONE!
 

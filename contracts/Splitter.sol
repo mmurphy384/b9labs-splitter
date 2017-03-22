@@ -7,8 +7,8 @@ contract Splitter {
     mapping (uint => address) accounts;
     mapping (address => uint) pendingTransfers;
     
-    event onSplit(address indexed sender, uint weiTotal, uint weiToAddress1, uint weiToAddress2, address indexed Addr1, address indexed Addr2);
-    event onWithdrawPendingFunds(bool isProcessed, address indexed weiToWhom, uint weiTotal);
+    event OnSplit(address indexed sender, uint weiTotal, uint weiToAddress1, uint weiToAddress2, address indexed addr1, address indexed addr2);
+    event OnWithdrawPendingFunds(bool isProcessed, address indexed weiToWhom, uint weiTotal);
     event OnFallbackReceipt(address fromWhom, uint weiTotal); 
 
     // ------ Private and Internal Functions ---------------------------------
@@ -18,6 +18,15 @@ contract Splitter {
             throw;
         }
         _;
+     }
+
+     //accessors
+     function getOwner() constant returns (address) {
+         return owner;
+     }
+
+     function getActiveStatus() constant returns (bool) {
+         return isActive;
      }
 
     // Contstructor - Not Payable
@@ -57,14 +66,12 @@ contract Splitter {
             else 
                 pendingTransfers[_account] = withdrawalAmount; 
         }
-        onWithdrawPendingFunds(success,_account, withdrawalAmount);
+        OnWithdrawPendingFunds(success,_account, withdrawalAmount);
     }
 
     // Function to split from from account[0]. Half to account[1], half to account[2]
-    function split() isOwner payable returns (string) { 
+    function split() payable returns (string) { 
         // do some simple error checking
-        if (msg.sender.balance < msg.value) 
-            return 'LowBalance';
         if (!isActive)
             return 'Inactive';
 
@@ -75,17 +82,17 @@ contract Splitter {
         pendingTransfers[accounts[1]] += half;
         pendingTransfers[accounts[2]] += otherhalf;
         
-        onSplit(msg.sender, msg.value, half, otherhalf, accounts[1], accounts[2]);
+        OnSplit(msg.sender, msg.value, half, otherhalf, accounts[1], accounts[2]);
         return 'ok';
     }
     
-    // Function to disable the contract permanently
+    // Function to re-enable the contract
     function resurrectMe() isOwner returns (bool) {
         isActive = true;
         return true;
     }
 
-    // Function to disable the contract permanently
+    // Function to disable the contract
     function killMe() isOwner returns (bool) {
         isActive = false;
         return true;

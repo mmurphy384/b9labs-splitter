@@ -11,27 +11,31 @@
 <body>
   <h1>Splitter</h1>
   <h2>Example Truffle Dapp</h2>
-  <p>This page exercises a very-simple function.  It sends ether to a Splitter.split contract sends half of the amount to Bob and the other half to Carol.</>
+  <p>This page exercises a very-simple function.  It sends ether to a Splitter.split contract sends half of the amount to Bob and the other half to Carol. Pick a persona below.</>
+  <div id='accounts'>
+    <img src='images/alice.PNG' id='alice' data='0' title='Alice - Owner'/>
+    <img src='images/bob.PNG' id='bob' data='1' title='Bob' />
+    <img src='images/carol.PNG' id='carol' data='2' title='Carol' />
+  </div>
   <br>
-  <br>
-  <div>
+  <div id='current-user-info' style='display:none'>
+    <h2>Welcome <span id='my-name'></span></h2>
+    <p>Your Address is <span id='my-address'></span></p>
+    <p>Your current balance is <span id='my-balance'>--</span> Wei</p>
+    <p>Splitter balance is <span id='contract-balance'>--</span> wei</p>
+    <hr>
     <p>Status: <span id="status"></span></p>
+    <hr>
+  </div>
+  <div id='owner-div' style='display:none;'>
+    <p>You are the owner of this contract.  The following options are available to you:</p>
     <button name='btn-split-10' id='btn-split-10'>Split 10 Wei</button>
     <button name='btn-split-09' id='btn-split-9'>Split 9 Wei</button>
   </div>
   <br>
-  <div>
-    <p>Splitter has <span id='account-split'></span> wei</p>
-    <p>Account 1 (Alice) has <span id='account-0'></span> wei</p>
-    <p>Account 2 (Bob) has <span id='account-1'></span> wei.  <button id='btn-withdraw-1'>--</button> wei available for withdrawal</p>
-    <p>Account 3 (Carol) has <span id='account-2'></span> wei. <button id='btn-withdraw-2'>--</button> wei available for withdrawal</p>
+  <div id='customer-div' style='display:none;'>
+    <p>You are a subscriber to this contract and may have pending withdrawals</p>
+    <p>You have <span id='withdrawal-balance'>--</span> wei awaiting withdrawal. <button id='btn-withdraw'>Withdraw</button></p>
   </div>
-  <br />
-  <br />
-  <p id='footer'>Transfer Logs</p>
-  <ul id='transfer-log'>
-    <li>-------------</li>
-  </ul>
-  
 </body>
 </html>
